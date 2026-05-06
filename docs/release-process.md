@@ -43,7 +43,17 @@ git commit -m "skill(<module-id>/<skill-name>): 用中文说明这次改动"
 - CHANGELOG 是否说明原因。
 - 示例和测试是否匹配新行为。
 
-## 6. 发布 tag
+## 6. 向 release 分支提交 PR
+
+当 PR 的目标分支是 `release` 时，GitHub Actions 会自动：
+
+1. 校验 skill 格式。
+2. 按模块生成 zip。
+3. 把每个模块的 zip 上传到 workflow run 的 Artifacts 区域。
+
+只有目标分支是 `release` 的 PR 会触发这个打包流程。
+
+## 7. 发布 tag
 
 可以先让脚本检查模块、skill 和版本号：
 

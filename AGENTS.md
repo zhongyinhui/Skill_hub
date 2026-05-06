@@ -55,8 +55,11 @@ _shared/git-intent-translator/v0.1.0
 2. 修改 skill 文件。
 3. 运行 `tools/validate-skill.ps1`。
 4. 提交 commit，commit message 说明改动目的。
-5. 合并前检查 diff、CHANGELOG 和版本号。
-6. 发布时打 tag。
+5. 如果要给业务同事交付压缩包，提交 PR 到 `release` 分支，让 GitHub Actions 自动按模块打包。
+6. 合并前检查 diff、CHANGELOG、版本号和 workflow artifact。
+7. 发布时打 tag。
+
+`release` 分支的 PR 会触发 `.github/workflows/package-modules.yml`，按模块生成 zip。不要手工提交 `dist/` 下的打包产物。
 
 推荐分支命名：
 

@@ -66,6 +66,25 @@ tools/
 - `modules/hr`：HR 部门。
 - `modules/_shared`：跨部门通用 skill。
 
+## release 分支打包
+
+当有人向 `release` 分支提交 PR，GitHub Actions 会自动按模块生成 zip：
+
+- `_shared-skills.zip`
+- `customer-success-skills.zip`
+- `sales-skills.zip`
+- `ip-skills.zip`
+- `private-domain-skills.zip`
+- `hr-skills.zip`
+
+这些 zip 会出现在对应 workflow run 的 Artifacts 区域。每个 zip 内保留模块目录，例如 `customer-success/skills/...`。
+
+本地也可以手动打包：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/package-modules.ps1 -OutputDir dist/module-zips
+```
+
 ## 第一次使用
 
 ```powershell

@@ -1,0 +1,95 @@
+name: 打包模块 Skill
+
+on:
+  pull_request:
+    branches:
+      - release
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+    paths:
+      - "modules/**"
+      - "templates/**"
+      - "tools/validate-skill.ps1"
+      - "tools/package-modules.ps1"
+      - ".github/workflows/package-modules.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  package-modules:
+    name: 按模块生成 zip
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v6
+
+      - name: 校验 skill 格式
+        shell: pwsh
+        run: ./tools/validate-skill.ps1
+
+      - name: 生成模块压缩包
+        shell: pwsh
+        run: ./tools/package-modules.ps1 -OutputDir dist/module-zips
+
+      - name: 写入运行摘要
+        shell: pwsh
+        run: |
+          "## 模块 skill 压缩包" >> $env:GITHUB_STEP_SUMMARY
+          "" >> $env:GITHUB_STEP_SUMMARY
+          Get-ChildItem -Path dist/module-zips -Filter "*.zip" | Sort-Object Name | ForEach-Object {
+            "- $($_.Name)" >> $env:GITHUB_STEP_SUMMARY
+          }
+
+      - name: 上传共享模块压缩包
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/module-zips/_shared-skills.zip
+          if-no-files-found: error
+          archive: false
+          retention-days: 14
+
+      - name: 上传客户成功模块压缩包
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/module-zips/customer-success-skills.zip
+          if-no-files-found: error
+          archive: false
+          retention-days: 14
+
+      - name: 上传销售模块压缩包
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/module-zips/sales-skills.zip
+          if-no-files-found: error
+          archive: false
+          retention-days: 14
+
+      - name: 上传 IP 部门模块压缩包
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/module-zips/ip-skills.zip
+          if-no-files-found: error
+          archive: false
+          retention-days: 14
+
+      - name: 上传私域部门模块压缩包
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/module-zips/private-domain-skills.zip
+          if-no-files-found: error
+          archive: false
+          retention-days: 14
+
+      - name: 上传 HR 部门模块压缩包
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/module-zips/hr-skills.zip
+          if-no-files-found: error
+          archive: false
+          retention-days: 14
+
