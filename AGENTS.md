@@ -1,7 +1,5 @@
 # Skill Hub Agent Instructions
 
-这台电脑是林家涛的电脑。林家涛在星陀智能上班，所在的部门是产品研发部。
-
 本仓库用于管理团队自研 skill。请把这里的每个 skill 都当作一个可发布、可回滚、可审查的产品单元，而不是一份临时提示词文件。
 
 ## Core Rules
@@ -13,6 +11,13 @@
 - 不要把本机密钥、个人路径、聊天记录、临时日志提交进仓库。
 - 不要直接删除旧 skill。弃用时在 `CHANGELOG.md` 和 `README.md` 中标记，并说明替代方案。
 - Agent 在修改某个 skill 前，必须先阅读该 skill 的 `README.md`、`CHANGELOG.md` 和现有测试或示例。
+
+## Language Rules
+
+- 本仓库新增或修改的文档默认使用中文，包括 `README.md`、`docs/`、skill 的说明文档、示例说明和变更记录。
+- commit message 必须使用中文，必要的英文技术关键词可以保留，例如 `skill`、`hook`、`tag`、`VERSION`。
+- PR 标题、PR 描述、PR review 回复和合并说明必须使用中文。
+- 如果引用上游工具、命令、错误信息或英文 API 名称，保持原文，不要为了中文化而改写命令或标识符。
 
 ## Versioning
 
@@ -63,9 +68,9 @@ fix/<skill-name>/<bug>
 commit 应该表达一个清晰意图。推荐格式：
 
 ```text
-skill(form-filler): add reimbursement form example
-fix(lark-base): clarify required permissions
-docs: explain skill versioning workflow
+skill(form-filler): 新增报销表单示例
+fix(lark-base): 补充权限说明
+docs: 解释 skill 版本管理流程
 ```
 
 避免使用：
