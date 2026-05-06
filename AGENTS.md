@@ -4,7 +4,10 @@
 
 ## Core Rules
 
-- 每个 skill 必须放在 `skills/<skill-name>/` 下。
+- 正式 skill 必须放在 `modules/<module-id>/skills/<skill-name>/` 下。
+- 跨部门通用 skill 放在 `modules/_shared/skills/<skill-name>/` 下。
+- 新 skill 的复制模板放在 `templates/skill/`，模板不是正式发布的 skill。
+- 当前业务模块包括：`customer-success`（客户成功）、`sales`（销售）、`ip`（IP 部门）、`private-domain`（私域部门）、`hr`（HR 部门）。
 - 每个 skill 至少包含 `SKILL.md`、`README.md`、`VERSION`、`CHANGELOG.md`。
 - 修改 `SKILL.md` 时，必须同步更新该 skill 的 `CHANGELOG.md`。
 - 修改影响使用方式、输入输出约定或兼容性时，必须更新 `VERSION`。
@@ -34,14 +37,14 @@ MAJOR.MINOR.PATCH
 如果要给某个 skill 打正式版本 tag，格式为：
 
 ```text
-<skill-name>/v<version>
+<module-id>/<skill-name>/v<version>
 ```
 
 示例：
 
 ```text
-form-filler/v1.2.0
-lark-base/v0.4.1
+customer-success/customer-handover/v1.2.0
+_shared/git-intent-translator/v0.1.0
 ```
 
 ## Git Workflow
@@ -58,9 +61,9 @@ lark-base/v0.4.1
 推荐分支命名：
 
 ```text
-skill/<skill-name>/<short-change>
+skill/<module-id>/<skill-name>/<short-change>
 docs/<topic>
-fix/<skill-name>/<bug>
+fix/<module-id>/<skill-name>/<bug>
 ```
 
 ## Commit Guidelines
@@ -68,8 +71,8 @@ fix/<skill-name>/<bug>
 commit 应该表达一个清晰意图。推荐格式：
 
 ```text
-skill(form-filler): 新增报销表单示例
-fix(lark-base): 补充权限说明
+skill(customer-success/customer-handover): 新增客户交接示例
+fix(_shared/git-intent-translator): 补充回退确认规则
 docs: 解释 skill 版本管理流程
 ```
 

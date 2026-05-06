@@ -29,7 +29,7 @@ Git 回答的是：
 - "这个版本不要了，回到之前。"
 - "把这个 skill 发布一版。"
 
-仓库里的 `skills/git-intent-translator` 会指导 Agent 把这些说法翻译成安全的 Git/GitHub 操作。
+仓库里的 `modules/_shared/skills/git-intent-translator` 会指导 Agent 把这些说法翻译成安全的 Git/GitHub 操作。
 
 ## 分支
 

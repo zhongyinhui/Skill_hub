@@ -21,20 +21,12 @@ function Test-Version {
     return $Version -match '^\d+\.\d+\.\d+$'
 }
 
-$skillsRoot = Join-Path $Root "skills"
-if (-not (Test-Path $skillsRoot)) {
-    Fail "Missing skills directory: $skillsRoot"
-    exit 1
-}
+function Test-SkillDirectory {
+    param(
+        [System.IO.DirectoryInfo]$Skill,
+        [string]$Relative
+    )
 
-$skillDirs = Get-ChildItem -Path $skillsRoot -Directory
-if ($skillDirs.Count -eq 0) {
-    Fail "No skill directories found under skills/"
-    exit 1
-}
-
-foreach ($skill in $skillDirs) {
-    $relative = "skills/$($skill.Name)"
     $skillMd = Join-Path $skill.FullName "SKILL.md"
     $readme = Join-Path $skill.FullName "README.md"
     $versionFile = Join-Path $skill.FullName "VERSION"
@@ -70,6 +62,60 @@ foreach ($skill in $skillDirs) {
     }
 }
 
+$modulesRoot = Join-Path $Root "modules"
+if (-not (Test-Path $modulesRoot)) {
+    Fail "Missing modules directory: $modulesRoot"
+    exit 1
+}
+
+$requiredModules = @("_shared", "customer-success", "sales", "ip", "private-domain", "hr")
+foreach ($moduleName in $requiredModules) {
+    $modulePath = Join-Path $modulesRoot $moduleName
+    $moduleReadme = Join-Path $modulePath "README.md"
+    $moduleSkills = Join-Path $modulePath "skills"
+
+    if (-not (Test-Path $modulePath)) {
+        Fail "Missing required module: modules/$moduleName"
+        continue
+    }
+    if (-not (Test-Path $moduleReadme)) {
+        Fail "modules/$moduleName is missing README.md"
+    }
+    if (-not (Test-Path $moduleSkills)) {
+        Fail "modules/$moduleName is missing skills directory"
+    }
+}
+
+$skillDirs = @()
+$moduleDirs = Get-ChildItem -Path $modulesRoot -Directory
+foreach ($module in $moduleDirs) {
+    $moduleSkillsRoot = Join-Path $module.FullName "skills"
+    if (Test-Path $moduleSkillsRoot) {
+        $skillDirs += Get-ChildItem -Path $moduleSkillsRoot -Directory | ForEach-Object {
+            [PSCustomObject]@{
+                Directory = $_
+                Relative = "modules/$($module.Name)/skills/$($_.Name)"
+            }
+        }
+    }
+}
+
+if ($skillDirs.Count -eq 0) {
+    Fail "No skill directories found under modules/*/skills/"
+}
+
+foreach ($entry in $skillDirs) {
+    Test-SkillDirectory -Skill $entry.Directory -Relative $entry.Relative
+}
+
+$templateSkill = Join-Path $Root "templates\skill"
+if (-not (Test-Path $templateSkill)) {
+    Fail "Missing skill template: templates/skill"
+}
+else {
+    Test-SkillDirectory -Skill (Get-Item $templateSkill) -Relative "templates/skill"
+}
+
 $blockedPatterns = @("*.log", "*.tmp", "*.bak", ".env", ".env.*")
 foreach ($pattern in $blockedPatterns) {
     $matches = Get-ChildItem -Path $Root -Recurse -Force -File -Filter $pattern |
@@ -85,4 +131,3 @@ if ($failed) {
 }
 
 Pass "All skill checks passed."
-

@@ -24,15 +24,29 @@ Skill Hub 是团队管理自研 skill 的版本仓库。
 ## 推荐目录
 
 ```text
-skills/
-  <skill-name>/
-    SKILL.md
-    README.md
-    VERSION
-    CHANGELOG.md
-    examples/
-    tests/
-    scripts/
+modules/
+  _shared/
+    skills/
+      <skill-name>/
+        SKILL.md
+        README.md
+        VERSION
+        CHANGELOG.md
+        examples/
+        tests/
+        scripts/
+  customer-success/
+    skills/
+  sales/
+    skills/
+  ip/
+    skills/
+  private-domain/
+    skills/
+  hr/
+    skills/
+templates/
+  skill/
 docs/
 tools/
 .githooks/
@@ -40,8 +54,17 @@ tools/
 
 ## 已内置的 skill
 
-- `skills/_template`：新建 skill 的复制模板。
-- `skills/git-intent-translator`：把普通用户的话翻译成安全的 Git/GitHub 操作，例如“保存一下”“发给同事看看”“这个版本不要了”。
+- `templates/skill`：新建 skill 的复制模板。
+- `modules/_shared/skills/git-intent-translator`：把普通用户的话翻译成安全的 Git/GitHub 操作，例如“保存一下”“发给同事看看”“这个版本不要了”。
+
+## 当前模块
+
+- `modules/customer-success`：客户成功。
+- `modules/sales`：销售。
+- `modules/ip`：IP 部门。
+- `modules/private-domain`：私域部门。
+- `modules/hr`：HR 部门。
+- `modules/_shared`：跨部门通用 skill。
 
 ## 第一次使用
 
@@ -62,15 +85,15 @@ git config core.hooksPath .githooks
 复制模板目录：
 
 ```powershell
-Copy-Item -Recurse skills/_template skills/my-new-skill
+Copy-Item -Recurse templates/skill modules/customer-success/skills/my-new-skill
 ```
 
 然后修改：
 
-- `skills/my-new-skill/SKILL.md`
-- `skills/my-new-skill/README.md`
-- `skills/my-new-skill/VERSION`
-- `skills/my-new-skill/CHANGELOG.md`
+- `modules/customer-success/skills/my-new-skill/SKILL.md`
+- `modules/customer-success/skills/my-new-skill/README.md`
+- `modules/customer-success/skills/my-new-skill/VERSION`
+- `modules/customer-success/skills/my-new-skill/CHANGELOG.md`
 
 提交前运行校验：
 

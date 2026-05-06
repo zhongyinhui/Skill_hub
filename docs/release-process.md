@@ -5,7 +5,7 @@
 ## 1. 创建分支
 
 ```powershell
-git switch -c skill/<skill-name>/<short-change>
+git switch -c skill/<module-id>/<skill-name>/<short-change>
 ```
 
 ## 2. 修改 skill
@@ -30,8 +30,8 @@ powershell -ExecutionPolicy Bypass -File tools/validate-skill.ps1
 ## 4. 提交
 
 ```powershell
-git add skills/<skill-name>
-git commit -m "skill(<skill-name>): describe the change"
+git add modules/<module-id>/skills/<skill-name>
+git commit -m "skill(<module-id>/<skill-name>): 用中文说明这次改动"
 ```
 
 ## 5. 合并
@@ -45,13 +45,21 @@ git commit -m "skill(<skill-name>): describe the change"
 
 ## 6. 发布 tag
 
+可以先让脚本检查模块、skill 和版本号：
+
 ```powershell
-git tag <skill-name>/v<version>
-git push origin <skill-name>/v<version>
+powershell -ExecutionPolicy Bypass -File tools/release-skill.ps1 -ModuleId customer-success -SkillName customer-handover
+```
+
+确认无误后再创建 tag：
+
+```powershell
+git tag <module-id>/<skill-name>/v<version>
+git push origin <module-id>/<skill-name>/v<version>
 ```
 
 示例：
 
 ```powershell
-git tag form-filler/v1.2.0
+git tag customer-success/customer-handover/v1.2.0
 ```

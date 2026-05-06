@@ -2,6 +2,12 @@
 
 本仓库使用语义化版本管理 skill。
 
+每个 skill 在所属模块内独立管理版本。发布 tag 使用模块路径，避免不同模块出现同名 skill 时互相冲突。
+
+```text
+<module-id>/<skill-name>/v<version>
+```
+
 ## 格式
 
 ```text
@@ -68,4 +74,3 @@ MAJOR.MINOR.PATCH
 ```
 
 没有内容的小节可以省略。
-
