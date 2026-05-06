@@ -38,6 +38,11 @@ tools/
 .githooks/
 ```
 
+## 已内置的 skill
+
+- `skills/_template`：新建 skill 的复制模板。
+- `skills/git-intent-translator`：把普通用户的话翻译成安全的 Git/GitHub 操作，例如“保存一下”“发给同事看看”“这个版本不要了”。
+
 ## 第一次使用
 
 ```powershell
