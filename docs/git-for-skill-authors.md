@@ -80,13 +80,13 @@ tag 代表正式发布。
 多个 skill 在同一个仓库时，推荐 tag 格式：
 
 ```text
-<skill-name>/v<version>
+<module-id>/<skill-name>/v<version>
 ```
 
 例如：
 
 ```text
-form-filler/v1.2.0
+customer-success/form-filler/v1.2.0
 ```
 
-这个 tag 的含义是：`form-filler` 的 `1.2.0` 版本可以被团队引用、安装或回退。
+这个 tag 的含义是：`customer-success` 模块下的 `form-filler` skill 的 `1.2.0` 版本可以被团队引用、安装或回退。版本主体仍然是 skill，`module-id` 只是命名空间，用来避免不同模块出现同名 skill 时冲突。
