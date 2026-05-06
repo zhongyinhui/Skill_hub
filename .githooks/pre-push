@@ -1,0 +1,3 @@
+#!/bin/sh
+powershell -ExecutionPolicy Bypass -File tools/validate-skill.ps1
+
