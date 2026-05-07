@@ -1,7 +1,5 @@
 # 共享模块
 
-<!-- workflow-smoke-test: release PR packaging -->
-
 这里放跨部门通用的 skill。
 
 适合放在本模块的内容：
