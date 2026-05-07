@@ -1,6 +1,6 @@
 ---
 name: customer-requirement-delivery-analysis
-description: Analyze one customer transcript, meeting note, chat log, call record, or uploaded text document (.txt, .md, .docx) to decompose customer requirements, delivery items, commitments, risks, entitlement or scope questions, and evidence-based customer profile deltas. Use when Codex needs a customer success requirement and delivery analysis package after a conversation, before any full intake, CSV update, Feishu sync, or archival write-back. If the user provides only raw audio such as .mp3, first obtain a transcript, then use this skill.
+description: 当用户上传或粘贴客户逐字稿、会议纪要、聊天记录、通话记录，或 .txt/.md/.docx 文本文件，并希望拆解客户需求、交付物、我方承诺、风险、权益或范围问题、客户画像增量时使用。Use before any full intake, CSV update, Feishu sync, or archival write-back. If the user provides only raw audio such as .mp3, first obtain a transcript, then use this skill.
 ---
 
 # 客户需求与交付拆解分析
