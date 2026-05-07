@@ -1,5 +1,7 @@
 # 共享模块
 
+<!-- workflow-smoke-test: release PR packaging -->
+
 这里放跨部门通用的 skill。
 
 适合放在本模块的内容：
@@ -13,4 +15,3 @@
 
 - 只服务某个部门的业务流程。
 - 带有某个部门专属字段、话术、模板或审批规则的 skill。
-
