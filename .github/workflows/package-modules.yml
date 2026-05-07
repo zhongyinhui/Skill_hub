@@ -1,6 +1,15 @@
 name: 打包模块 Skill
 
 on:
+  push:
+    branches:
+      - release
+    paths:
+      - "modules/**"
+      - "templates/**"
+      - "tools/validate-skill.ps1"
+      - "tools/package-modules.ps1"
+      - ".github/workflows/package-modules.yml"
   pull_request:
     branches:
       - release
@@ -92,4 +101,3 @@ jobs:
           if-no-files-found: error
           archive: false
           retention-days: 14
-
