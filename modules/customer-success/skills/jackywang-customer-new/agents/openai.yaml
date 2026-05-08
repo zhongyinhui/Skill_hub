@@ -1,0 +1,7 @@
+interface:
+  display_name: "JackywangCustomerNEW"
+  short_description: "新人客户成功跟进、确认与复盘副驾驶"
+  default_prompt: "Use $jackywang-customer-new to turn this customer conversation into next-step follow-up actions, internal confirmations, and newcomer learning notes."
+
+policy:
+  allow_implicit_invocation: true
