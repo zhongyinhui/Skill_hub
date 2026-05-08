@@ -105,3 +105,9 @@ powershell -ExecutionPolicy Bypass -File tools/validate-skill.ps1
 ```
 
 不要因为 hook 运行环境异常而跳过 skill 校验。
+
+## GitHub Actions
+
+- `.github/workflows/*.yml` 和 `.github/workflows/*.yaml` 中所有 `name:` 字段必须使用英文 ASCII。
+- 不要把中文 workflow 名、job 名或 step 名配置为 GitHub Actions 的 `name:`，尤其不要作为分支保护的 required status check。
+- release 分支保护规则中的必需检查名必须与实际 GitHub Actions job 名完全一致，目前应使用 `Package Module Zips`。

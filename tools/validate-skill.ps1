@@ -125,6 +125,25 @@ foreach ($pattern in $blockedPatterns) {
     }
 }
 
+$workflowRoot = Join-Path $Root ".github\workflows"
+if (Test-Path $workflowRoot) {
+    $workflowFiles = @()
+    $workflowFiles += Get-ChildItem -Path (Join-Path $workflowRoot "*.yml") -File -ErrorAction SilentlyContinue
+    $workflowFiles += Get-ChildItem -Path (Join-Path $workflowRoot "*.yaml") -File -ErrorAction SilentlyContinue
+    foreach ($workflow in $workflowFiles) {
+        $relativeWorkflow = $workflow.FullName.Substring($Root.Length + 1).Replace("\", "/")
+        $lines = Get-Content -Encoding UTF8 $workflow.FullName
+        for ($i = 0; $i -lt $lines.Count; $i++) {
+            if ($lines[$i] -match '^\s*name:\s*(.+?)\s*$') {
+                $nameValue = $matches[1].Trim('"').Trim("'")
+                if ($nameValue -cmatch '[^\x00-\x7F]') {
+                    Fail "$relativeWorkflow line $($i + 1) has non-ASCII GitHub Actions name '$nameValue'; use English ASCII to keep branch protection checks stable."
+                }
+            }
+        }
+    }
+}
+
 if ($failed) {
     Write-Host "Skill validation failed." -ForegroundColor Red
     exit 1
