@@ -34,18 +34,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 拉取代码
+      - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: 校验 skill 格式
+      - name: Validate skill format
         shell: pwsh
         run: ./tools/validate-skill.ps1
 
-      - name: 生成模块压缩包
+      - name: Package module zips
         shell: pwsh
         run: ./tools/package-modules.ps1 -OutputDir dist/module-zips
 
-      - name: 写入运行摘要
+      - name: Write run summary
         shell: pwsh
         run: |
           "## 模块 skill 压缩包" >> $env:GITHUB_STEP_SUMMARY
@@ -54,7 +54,7 @@ jobs:
             "- $($_.Name)" >> $env:GITHUB_STEP_SUMMARY
           }
 
-      - name: 上传共享模块压缩包
+      - name: Upload shared module zip
         uses: actions/upload-artifact@v7
         with:
           path: dist/module-zips/_shared-skills.zip
@@ -62,7 +62,7 @@ jobs:
           archive: false
           retention-days: 14
 
-      - name: 上传客户成功模块压缩包
+      - name: Upload customer success module zip
         uses: actions/upload-artifact@v7
         with:
           path: dist/module-zips/customer-success-skills.zip
@@ -70,7 +70,7 @@ jobs:
           archive: false
           retention-days: 14
 
-      - name: 上传销售模块压缩包
+      - name: Upload sales module zip
         uses: actions/upload-artifact@v7
         with:
           path: dist/module-zips/sales-skills.zip
@@ -78,7 +78,7 @@ jobs:
           archive: false
           retention-days: 14
 
-      - name: 上传 IP 部门模块压缩包
+      - name: Upload IP module zip
         uses: actions/upload-artifact@v7
         with:
           path: dist/module-zips/ip-skills.zip
@@ -86,7 +86,7 @@ jobs:
           archive: false
           retention-days: 14
 
-      - name: 上传私域部门模块压缩包
+      - name: Upload private domain module zip
         uses: actions/upload-artifact@v7
         with:
           path: dist/module-zips/private-domain-skills.zip
@@ -94,7 +94,7 @@ jobs:
           archive: false
           retention-days: 14
 
-      - name: 上传 HR 部门模块压缩包
+      - name: Upload HR module zip
         uses: actions/upload-artifact@v7
         with:
           path: dist/module-zips/hr-skills.zip
@@ -102,7 +102,7 @@ jobs:
           archive: false
           retention-days: 14
 
-      - name: 发布到 GitHub Releases
+      - name: Publish GitHub Release
         if: github.event_name == 'push'
         shell: pwsh
         env:
