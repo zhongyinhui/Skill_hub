@@ -107,40 +107,38 @@ jobs:
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: module-skills-latest
-          RELEASE_TITLE: 模块 Skill 最新压缩包
         run: |
           if (Get-Variable PSNativeCommandUseErrorActionPreference -ErrorAction SilentlyContinue) {
             $PSNativeCommandUseErrorActionPreference = $false
           }
+
+          $releaseVersion = "v$((Get-Date).ToUniversalTime().ToString('yyyy.MM.dd'))-$env:GITHUB_RUN_NUMBER.$env:GITHUB_RUN_ATTEMPT"
+          $releaseTag = "module-skills/$releaseVersion"
+          $releaseTitle = "模块 Skill $releaseVersion 压缩包"
 
           $assets = Get-ChildItem -Path dist/module-zips -Filter "*.zip" | Sort-Object Name | ForEach-Object { $_.FullName }
           if ($assets.Count -eq 0) {
             throw "dist/module-zips 下没有可发布的 zip 文件"
           }
 
-          gh release view $env:RELEASE_TAG *> $null
+          gh release view $releaseTag *> $null
           if ($LASTEXITCODE -eq 0) {
-            gh release delete $env:RELEASE_TAG --yes --cleanup-tag
-            if ($LASTEXITCODE -ne 0) {
-              throw "删除已有 release 失败：$env:RELEASE_TAG"
-            }
-          }
-          else {
-            Write-Host "未找到已有 release，准备创建新的 release。"
+            throw "Release 版本已存在：$releaseTag"
           }
 
           $notes = @"
           由 release 分支自动生成。
 
+          版本：$releaseVersion
+
           提交：${{ github.sha }}
           "@
 
-          gh release create $env:RELEASE_TAG $assets `
-            --title $env:RELEASE_TITLE `
+          gh release create $releaseTag $assets `
+            --title $releaseTitle `
             --notes $notes `
             --target $env:GITHUB_SHA `
             --latest
           if ($LASTEXITCODE -ne 0) {
-            throw "创建 release 失败：$env:RELEASE_TAG"
+            throw "创建 release 失败：$releaseTag"
           }
