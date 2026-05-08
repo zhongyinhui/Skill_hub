@@ -53,6 +53,21 @@ git commit -m "skill(<module-id>/<skill-name>): 用中文说明这次改动"
 
 只有目标分支是 `release` 的 PR 会触发这个打包流程。
 
+PR 合并到 `release` 后，`release` 分支的 push 会再次运行同一套打包流程，并创建一个带版本号的 GitHub Release。
+发布包 tag 使用：
+
+```text
+module-skills/vYYYY.MM.DD-<run_number>.<run_attempt>
+```
+
+示例：
+
+```text
+module-skills/v2026.05.08-42.1
+```
+
+GitHub 首页右侧的 Releases 区域会显示最新一次 Release，历史发布包也会保留，方便回溯下载。
+
 ## 7. 发布 tag
 
 可以先让脚本检查模块、skill 和版本号：
