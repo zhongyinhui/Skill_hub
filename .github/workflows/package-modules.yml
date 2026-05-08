@@ -1,4 +1,4 @@
-name: 打包模块 Skill
+name: Package Module Skills
 
 on:
   push:
@@ -30,7 +30,7 @@ permissions:
 
 jobs:
   package-modules:
-    name: 按模块生成 zip
+    name: Package Module Zips
     runs-on: ubuntu-latest
 
     steps:
