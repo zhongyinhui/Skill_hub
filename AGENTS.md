@@ -18,8 +18,8 @@
 - 不要把本机密钥、个人路径、聊天记录、临时日志提交进仓库。
 - 不要直接删除旧 skill。弃用时在 `CHANGELOG.md` 和 `README.md` 中标记，并说明替代方案。
 - Agent 在修改某个 skill 前，必须先阅读该 skill 的 `README.md`、`CHANGELOG.md` 和现有测试或示例。
+- 处理某个具体 skill 的创建、修改或测试时，不要顺手修改 `AGENTS.md`、`docs/` 流程文档、`skill-governance-router` 等底层治理规范；只有用户明确要求调整治理机制时才修改这些通用规则。
 - Agent 在完成需求确认、本地草稿、校验、commit、push、PR、review 或 merge 等阶段后，必须简短说明当前状态和建议下一步，不能只说“完成了”。
-- HTML、演示页、可视化手册或浏览器原型类交付物默认使用单个 `index.html`，通过前端状态模拟虚拟子页面；不要默认询问多文件页面结构，除非用户明确要求或存在明确技术原因。
 
 ## Module Routing Rules
 
@@ -81,9 +81,11 @@ _shared/git-intent-translator/v0.1.0
 
 `release` 分支的 PR 会触发 `.github/workflows/package-modules.yml`，按模块生成 zip。不要手工提交 `dist/` 下的打包产物。
 
-用户只说“上传”“保存到远程”或 “push” 时，默认上传到当前个人 `work/<name-pinyin>` 分支，不需要 PR；如果要进入 `master`、`release` 或正式团队使用，必须创建 PR 并审核。
+用户只说“上传”“保存到远程”或 “push” 时，默认上传到当前个人 `work/<name-pinyin>` 分支，不需要 PR；如果普通同事要进入 `master`、`release` 或正式团队使用，必须创建 PR 并审核。
 
 用户说“给负责人审核”时，Agent 必须先确认 PR 目标是 `master` 还是 `release`。
+
+仓库管理者 / owner 自己推进正式分支时有两种方式：推荐创建 PR 作为变更说明和决策留档，然后由管理者确认 merge；如果管理者明确要求直接更新 `master`，Agent 可以在校验通过并说明会绕过 PR 留档后直接 push，但必须避免把测试内容或无关提交带入正式分支。
 
 推荐分支命名：
 
@@ -128,6 +130,7 @@ wip
 - 从 `work/<name-pinyin>` 发起的 PR 可能包含多个 skill，但必须在 PR 描述中列清楚；不要依赖分支名表达改动内容。
 - 面向 `release` 的 PR 必须等待 `Package Module Zips` 检查通过后再合并。
 - approve 和 merge 分开处理：approve 表示审核认可；merge 会真实进入目标分支，必须单独确认。
+- PR 作者不能 approve 自己的 PR；如果作者本人就是管理者，PR 主要用于留档，管理者检查 diff 和校验结果后可以确认 merge。
 
 ## GitHub Actions
 

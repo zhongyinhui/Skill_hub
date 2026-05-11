@@ -135,10 +135,12 @@ work/<name-pinyin> -> release
 | 你想做什么 | 默认目标 | 是否需要 PR |
 | --- | --- | --- |
 | 保存远程草稿 | `work/<name-pinyin>` | 不需要 |
-| 让团队正式同步这套规则或 skill | `master` | 需要 |
+| 让团队正式同步这套规则或 skill | `master` | 普通同事需要；管理者可选择 PR 留档后 merge |
 | 打包生成模块 zip 或发布 | `release` | 需要 |
 
 如果你只说“上传一下”，Codex 应该默认理解为 push 到你的个人工作分支。push 完成后，Codex 再问你是否要继续发 PR 到 `master` 或 `release`。
+
+如果你本人就是仓库管理者，进入 `master` 有两种方式：推荐创建 PR 留档后由你确认 merge；如果你明确要求直接更新 `master`，Codex 可以在校验通过并说明影响后直接 push。直接 push 仍然有 commit 回溯，但没有 PR 的变更说明和讨论记录。
 
 ## 模块怎么选
 
@@ -208,18 +210,6 @@ powershell -ExecutionPolicy Bypass -File tools/sync-codex-skills.ps1 -SkillName 
 ```
 
 如果同步后 `$<skill-name>` 仍不可见，通常需要新开 Codex 线程或刷新 skill 列表。
-
-## HTML 文件怎么做
-
-如果你要 Codex 生成 HTML 演示页、可视化说明页、操作手册或页面原型，默认就是一个文件：
-
-```text
-index.html
-```
-
-多个页面效果会放在这个文件里，用标签页、折叠区、hash route 或前端状态模拟。这样最方便保存、预览、上传和交接。
-
-只有你明确说“我要多文件真实页面”或确实有技术原因时，Codex 才会拆成 `pages/*.html`、`assets/` 等多文件结构。
 
 ## 本地验证
 
