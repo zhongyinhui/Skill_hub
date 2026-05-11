@@ -6,7 +6,7 @@
 
 1. skill 是团队可复用的方法包，不是临时提示词。
 2. 普通同事在自己的 `work/<name-pinyin>` 分支上工作。
-3. 做完后先验证，再提交，再发 PR；merge 由负责人确认。
+3. 做完后先验证，再提交，默认先 push 到自己的工作分支；要进入正式分支时才发 PR。
 
 ## 第一次拿到仓库
 
@@ -76,6 +76,7 @@ git push -u origin work/zhangsan
 
 如果你要创建、上传、提交或发 PR，Codex 应该确认：
 
+- 这次只是上传到你的个人工作分支，还是要进入 `master` / `release`。
 - 这个 skill 具体解决什么场景，输入和输出是什么。
 - 这个 skill 最终归属哪个模块。
 - 本次是否只处理这些 skill。
@@ -110,7 +111,34 @@ git push -u origin work/zhangsan
 11. 如需在本项目里直接 `$skill-name` 调用，确保它也在 `.codex/skills/<skill-name>/`。
 12. 提交 commit。
 13. push 到自己的工作分支。
-14. 创建 PR，交给负责人审核。
+14. 如果要进入 `master` 或 `release`，再创建 PR，交给负责人审核。
+
+## 上传和 PR 的区别
+
+普通同事默认先把改动上传到自己的工作分支：
+
+```text
+本地电脑 -> origin/work/<name-pinyin>
+```
+
+这一步只是保存个人草稿和阶段成果，不需要 PR。
+
+只有当你要让改动进入正式分支时，才需要 PR：
+
+```text
+work/<name-pinyin> -> master
+work/<name-pinyin> -> release
+```
+
+目标分支怎么选：
+
+| 你想做什么 | 默认目标 | 是否需要 PR |
+| --- | --- | --- |
+| 保存远程草稿 | `work/<name-pinyin>` | 不需要 |
+| 让团队正式同步这套规则或 skill | `master` | 需要 |
+| 打包生成模块 zip 或发布 | `release` | 需要 |
+
+如果你只说“上传一下”，Codex 应该默认理解为 push 到你的个人工作分支。push 完成后，Codex 再问你是否要继续发 PR 到 `master` 或 `release`。
 
 ## 模块怎么选
 
@@ -151,6 +179,28 @@ modules/<module-id>/skills/<skill-name>/
 .codex/skills/<skill-name>/
 ```
 
+这里的 `.codex/skills/` 是当前项目里的目录，例如：
+
+```text
+D:\中隐会\Skills_hub\.codex\skills\<skill-name>\
+```
+
+它不是 C 盘全局 Codex 目录。C 盘全局目录通常类似：
+
+```text
+C:\Users\<user>\.codex\skills\<skill-name>\
+```
+
+区别：
+
+| 位置 | 作用 |
+| --- | --- |
+| `modules/<module-id>/skills/<skill-name>/` | 正式归档、评审、发布、回滚 |
+| `当前项目/.codex/skills/<skill-name>/` | 当前项目里 `$skill-name` 可调用 |
+| `C:\Users\<user>\.codex\skills/<skill-name>/` | 用户全局可调用，跨项目使用 |
+
+Skill Hub 现在默认先保证当前项目可调用；跨项目全局安装后面再单独设计。
+
 从正式归档路径刷新到项目可调用入口：
 
 ```powershell
@@ -158,6 +208,18 @@ powershell -ExecutionPolicy Bypass -File tools/sync-codex-skills.ps1 -SkillName 
 ```
 
 如果同步后 `$<skill-name>` 仍不可见，通常需要新开 Codex 线程或刷新 skill 列表。
+
+## HTML 文件怎么做
+
+如果你要 Codex 生成 HTML 演示页、可视化说明页、操作手册或页面原型，默认就是一个文件：
+
+```text
+index.html
+```
+
+多个页面效果会放在这个文件里，用标签页、折叠区、hash route 或前端状态模拟。这样最方便保存、预览、上传和交接。
+
+只有你明确说“我要多文件真实页面”或确实有技术原因时，Codex 才会拆成 `pages/*.html`、`assets/` 等多文件结构。
 
 ## 本地验证
 

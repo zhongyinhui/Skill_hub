@@ -23,6 +23,8 @@
 - 是否在阶段结束后说明当前状态和下一步建议。
 - 是否把 approve 和 merge 分开处理，merge 前必须明确确认。
 - 是否说明正式存放位置和项目 `$skill-name` 调用入口的区别。
+- 是否区分“push 到个人工作分支”和“创建 PR 进入 master/release”。
+- HTML、演示页、可视化手册类交付物是否默认使用单个 `index.html` 虚拟页面结构。
 
 ## 阶段式引导
 
@@ -55,9 +57,33 @@ Agent 完成一个阶段后，应输出简短的状态提示：
 - commit 准备
 - commit 完成
 - push 完成
+- PR 目标确认
 - PR 准备
 - review / approve 完成
 - merge 后检查
+
+## 分支目标规则
+
+- 用户只说“上传”“保存到远程”“push”时，默认 push 到当前 `work/<name-pinyin>` 个人工作分支，不需要 PR。
+- 用户说“进入正式分支”“合到 master”“团队正式使用”时，创建 PR 到 `master`。
+- 用户说“发布”“打包”“生成模块 zip”“release”时，创建 PR 到 `release`，并等待 `Package Module Zips` 通过。
+- 用户说“给负责人审核”时，先问清 PR 目标是 `master` 还是 `release`。
+- push 到个人工作分支后，不要自动创建 PR；先询问是否要继续进入正式分支。
+
+## HTML 交付物默认形态
+
+如果 skill 需要 HTML 演示页、可视化说明页、操作手册或浏览器可打开的原型，默认使用：
+
+```text
+index.html
+```
+
+要求：
+
+- 单文件交付，CSS 和 JavaScript 默认内联。
+- 多个页面用标签页、折叠区、hash route 或前端状态模拟。
+- 不默认创建 `pages/*.html`、`assets/` 或多个真实 HTML 文件。
+- 只有用户明确要求多文件，或存在明确技术原因时，才改为多文件结构，并先说明原因。
 
 ## 相关文档
 
@@ -78,6 +104,20 @@ modules/<module-id>/skills/<skill-name>/
 ```text
 .codex/skills/<skill-name>/
 ```
+
+注意：这里的 `.codex/skills/` 是当前仓库里的项目级目录，例如：
+
+```text
+D:\中隐会\Skills_hub\.codex\skills\<skill-name>\
+```
+
+它不是 C 盘的全局 Codex 目录。C 盘全局目录通常类似：
+
+```text
+C:\Users\<user>\.codex\skills\<skill-name>\
+```
+
+项目级 skill 只服务当前项目；全局 skill 才用于多个项目共享。Skill Hub 默认先保证当前项目可调用，跨项目安装以后单独设计。
 
 从正式归档路径刷新项目可调用入口：
 

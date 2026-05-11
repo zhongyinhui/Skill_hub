@@ -19,6 +19,7 @@
 - 不要直接删除旧 skill。弃用时在 `CHANGELOG.md` 和 `README.md` 中标记，并说明替代方案。
 - Agent 在修改某个 skill 前，必须先阅读该 skill 的 `README.md`、`CHANGELOG.md` 和现有测试或示例。
 - Agent 在完成需求确认、本地草稿、校验、commit、push、PR、review 或 merge 等阶段后，必须简短说明当前状态和建议下一步，不能只说“完成了”。
+- HTML、演示页、可视化手册或浏览器原型类交付物默认使用单个 `index.html`，通过前端状态模拟虚拟子页面；不要默认询问多文件页面结构，除非用户明确要求或存在明确技术原因。
 
 ## Module Routing Rules
 
@@ -31,7 +32,7 @@
 - `hr`：招聘、面试、候选人跟进、入职、培训、绩效和组织资料。
 - `_shared`：两个及以上部门都能复用，或属于 Git/GitHub、文档、表格、会议、知识库、流程治理等通用能力。
 - 若一个 skill 同时适合多个部门，优先问用户归属；无法确定时放入 `_shared`，并在 `README.md` 说明适用部门。
-- 正式 skill 的归档路径是 `modules/<module-id>/skills/<skill-name>/`；如果需要在本项目中手动 `$skill-name` 调用，应同时维护 `.codex/skills/<skill-name>/` 项目可调用入口。
+- 正式 skill 的归档路径是 `modules/<module-id>/skills/<skill-name>/`；如果需要在本项目中手动 `$skill-name` 调用，应同时维护当前仓库下的 `.codex/skills/<skill-name>/` 项目可调用入口。项目 `.codex/skills/` 不是 C 盘全局 Codex skill 目录；全局安装只有在用户明确要求跨项目使用时才处理。
 
 ## Language Rules
 
@@ -79,6 +80,10 @@ _shared/git-intent-translator/v0.1.0
 7. 发布时打 tag。
 
 `release` 分支的 PR 会触发 `.github/workflows/package-modules.yml`，按模块生成 zip。不要手工提交 `dist/` 下的打包产物。
+
+用户只说“上传”“保存到远程”或 “push” 时，默认上传到当前个人 `work/<name-pinyin>` 分支，不需要 PR；如果要进入 `master`、`release` 或正式团队使用，必须创建 PR 并审核。
+
+用户说“给负责人审核”时，Agent 必须先确认 PR 目标是 `master` 还是 `release`。
 
 推荐分支命名：
 
