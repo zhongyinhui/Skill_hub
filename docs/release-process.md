@@ -71,7 +71,19 @@ git commit -m "skill(<module-id>/<skill-name>): 用中文说明这次改动"
 
 如果在 `work/<name-pinyin>` 分支上一次提交多个 skill，commit message 可以概括批次，但 PR 描述必须逐项列出路径和变化。
 
-## 5. 合并
+## 5. 上传到个人工作分支
+
+提交后，普通同事默认先 push 到自己的个人工作分支：
+
+```powershell
+git push origin work/<name-pinyin>
+```
+
+这一步只是保存远程草稿和阶段成果，不需要 PR，也不会影响 `master` 或 `release`。
+
+如果用户只说“上传”“保存到远程”，Agent 默认引导到这一步。push 完成后，再询问是否需要进入正式分支。
+
+## 6. 合并
 
 合并前重点审查：
 
@@ -89,7 +101,16 @@ approve 和 merge 要分开看：
 
 merge 前必须确认目标分支、检查结果和发布影响。面向 `release` 的 PR 还要确认 `Package Module Zips` 已通过。
 
-## 6. 向 release 分支提交 PR
+## 7. 向正式分支提交 PR
+
+只有要进入正式分支时，才创建 PR：
+
+- 进入 `master`：用于团队稳定基线，让其他同事后续同步到正式内容。
+- 进入 `release`：用于发布打包，生成模块 zip 和 Release。
+
+不要把“push 到个人工作分支”和“创建 PR 进入正式分支”混在一起。
+
+## 8. 向 release 分支提交 PR
 
 当 PR 的目标分支是 `release` 时，GitHub Actions 会自动：
 
@@ -116,7 +137,7 @@ module-skills/v2026.05.08-42.1
 
 GitHub 首页右侧的 Releases 区域会显示最新一次 Release，历史发布包也会保留，方便回溯下载。
 
-## 7. 发布 tag
+## 9. 发布 tag
 
 可以先让脚本检查模块、skill 和版本号：
 
