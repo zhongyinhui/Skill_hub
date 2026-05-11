@@ -1,0 +1,7 @@
+interface:
+  display_name: "Skill Governance Router"
+  short_description: "Skill 命名、归属、分支和 PR 规则守门"
+  default_prompt: "Use $skill-governance-router to check naming, module routing, branch, commit, and PR rules before creating or uploading a Skill Hub skill."
+
+policy:
+  allow_implicit_invocation: true

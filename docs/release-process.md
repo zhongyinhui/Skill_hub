@@ -4,9 +4,25 @@
 
 ## 1. 创建分支
 
+普通同事默认使用个人长期工作分支：
+
+```powershell
+git switch -c work/<name-pinyin>
+```
+
+例如：
+
+```powershell
+git switch -c work/renqc
+```
+
+单个 skill 或一次明确改动需要短期评审分支时，可以使用：
+
 ```powershell
 git switch -c skill/<module-id>/<skill-name>/<short-change>
 ```
+
+分支名必须使用拼音或英文 ASCII，不要使用中文。
 
 ## 2. 修改 skill
 
@@ -19,6 +35,17 @@ git switch -c skill/<module-id>/<skill-name>/<short-change>
 - `examples/`
 - `tests/`
 
+创建或上传 skill 前必须确认所属模块：
+
+- `_shared`
+- `customer-success`
+- `sales`
+- `ip`
+- `private-domain`
+- `hr`
+
+如果用户没有说明模块，Agent 必须主动提问，不能直接根据当前目录猜测。
+
 ## 3. 本地校验
 
 ```powershell
@@ -27,12 +54,22 @@ powershell -ExecutionPolicy Bypass -File tools/validate-skill.ps1
 
 如果已经启用 `.githooks/`，提交和推送时也会自动运行同一套检查。
 
+如果需要在本项目里用 `$skill-name` 手动测试，先刷新项目可调用入口：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/sync-codex-skills.ps1 -SkillName <skill-name>
+```
+
+正式发布和回滚仍以 `modules/<module-id>/skills/<skill-name>/` 为准；项目内 `$skill-name` 调用以 `.codex/skills/<skill-name>/` 为入口。
+
 ## 4. 提交
 
 ```powershell
 git add modules/<module-id>/skills/<skill-name>
 git commit -m "skill(<module-id>/<skill-name>): 用中文说明这次改动"
 ```
+
+如果在 `work/<name-pinyin>` 分支上一次提交多个 skill，commit message 可以概括批次，但 PR 描述必须逐项列出路径和变化。
 
 ## 5. 合并
 
@@ -42,6 +79,15 @@ git commit -m "skill(<module-id>/<skill-name>): 用中文说明这次改动"
 - 版本号是否正确。
 - CHANGELOG 是否说明原因。
 - 示例和测试是否匹配新行为。
+- 机器识别名是否使用拼音或英文 ASCII。
+- PR 描述是否列出所有变更的 skill 路径。
+
+approve 和 merge 要分开看：
+
+- approve：审核人认可这次改动，可以进入下一步。
+- merge：改动真实进入目标分支，会影响发布和团队使用。
+
+merge 前必须确认目标分支、检查结果和发布影响。面向 `release` 的 PR 还要确认 `Package Module Zips` 已通过。
 
 ## 6. 向 release 分支提交 PR
 
@@ -52,6 +98,8 @@ git commit -m "skill(<module-id>/<skill-name>): 用中文说明这次改动"
 3. 把每个模块的 zip 上传到 workflow run 的 Artifacts 区域。
 
 只有目标分支是 `release` 的 PR 会触发这个打包流程。
+
+PR 标题和描述按 `.github/pull_request_template.md` 填写。面向 `release` 的 PR 必须等待 `Package Module Zips` 通过后再合并。
 
 PR 合并到 `release` 后，`release` 分支的 push 会再次运行同一套打包流程，并创建一个带版本号的 GitHub Release。
 发布包 tag 使用：
