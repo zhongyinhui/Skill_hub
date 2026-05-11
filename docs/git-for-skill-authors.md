@@ -35,6 +35,14 @@ Git 回答的是：
 
 分支是一条试验线。
 
+团队日常工作默认使用个人长期分支：
+
+```powershell
+git switch -c work/renqc
+```
+
+这个名字只说明“任起超正在这里工作”，不说明本次改了什么。本次改动要写进 commit message 和 PR 描述。
+
 例如你要增强 `form-filler`：
 
 ```powershell
@@ -42,6 +50,8 @@ git switch -c skill/form-filler/add-contract-example
 ```
 
 这表示：我正在为 `form-filler` 增加合同类表单示例。
+
+`skill/...` 更适合短期精确分支，不适合作为每个人长期工作分支。
 
 ## Commit
 
@@ -51,6 +61,8 @@ commit 是一个有意义的保存点。
 
 ```text
 skill(form-filler): add contract form example
+skill(customer-success/kehu-xuqiu-jiaofu-fenxi): 新增逐字稿需求拆解
+work(renqc): 补充团队 skill 命名与上传规范
 ```
 
 不好的 commit：
