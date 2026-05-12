@@ -31,6 +31,8 @@ Git 回答的是：
 
 仓库里的 `modules/_shared/skills/git-intent-translator` 会指导 Agent 把这些说法翻译成安全的 Git/GitHub 操作。
 
+如果你说“给负责人审核”或“创建 PR”，PR 标题和描述应由 Codex 根据当前改动、校验结果和仓库模板生成；你只需要确认目标分支和是否提交申请。
+
 ## 分支
 
 分支是一条试验线。

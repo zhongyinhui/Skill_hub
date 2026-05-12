@@ -14,7 +14,27 @@ Skill Hub 是团队管理自研 skill 的版本仓库。
 
 ## 新同事从这里开始
 
-第一次使用时，先读：
+如果你不知道该问什么，先把这句话发给 Codex：
+
+```text
+我第一次使用 Skill Hub。请你主动按仓库流程带我走：先检查当前分支和工作区状态，再判断我是在创建、修改、上传还是发布 skill；每一步都告诉我当前状态、风险和下一步选择。
+```
+
+然后按这条路径走：
+
+```text
+1. 确认当前分支和未提交文件
+2. 确认真实姓名或姓名拼音/缩写，切到自己的 work/<name-pinyin> 分支
+3. 说明要创建或修改哪个 skill
+4. 确认模块、命名、输入、输出和可用标准
+5. 修改文件并运行 validate
+6. commit 并 push 到个人工作分支
+7. 需要进入 master / release 时再创建 PR
+```
+
+每到本地草稿、校验通过、commit 或 push 这类稳定节点，Codex 应只问两个方向：继续深化调整，还是进入下一步流程。要给负责人审核或进入正式分支时，PR 标题和描述由 Codex 根据当前 diff、skill 内容、校验结果和模板自动生成，并先给出已预填的模块、范围、目标分支和 PR 内容让你核实。
+
+需要查细节时，再读：
 
 - `docs/quickstart-for-teammates.md`：10 分钟上手，说明 clone、个人工作分支、创建 skill、校验、PR 和 merge 边界。
 - `docs/team-workflow.md`：团队协作流程，说明普通同事、负责人和发布分支怎么配合。
@@ -118,6 +138,8 @@ work/zhangsan
 work/lisi
 ```
 
+`<name-pinyin>` 必须来自本人确认的真实姓名拼音或缩写，不要直接用系统用户名、Git 用户名或 GitHub 用户名猜分支名。
+
 个人长期分支只表达“谁在工作”，不表达本次改了什么。本次改动范围应写在 commit message、PR 标题和 PR 描述中。
 
 详细规则见：
@@ -172,10 +194,10 @@ Copy-Item -Recurse templates/skill modules/customer-success/skills/my-new-skill
 powershell -ExecutionPolicy Bypass -File tools/validate-skill.ps1
 ```
 
-如果需要在本项目里直接用 `$my-new-skill` 调用，确保它也出现在项目可调用入口：
+新建或改名 skill 时，默认同步本项目可调用入口，确保它能在本项目里直接用 `$my-new-skill` 调用，并在选择器里显示项目来源：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/sync-codex-skills.ps1 -SkillName my-new-skill
 ```
 
-正式归档路径仍然是 `modules/<module-id>/skills/<skill-name>/`；项目可调用入口是 `.codex/skills/<skill-name>/`。提交给团队使用时，两处都要保持一致。
+正式归档路径仍然是 `modules/<module-id>/skills/<skill-name>/`；项目可调用入口是 `.codex/skills/<skill-name>/`。提交给团队使用时，两处都要保持一致。同步后如果选择器里暂时看不到，刷新 skill 列表或新开 Codex 线程；不要按固定秒数等待后台自动加载。
