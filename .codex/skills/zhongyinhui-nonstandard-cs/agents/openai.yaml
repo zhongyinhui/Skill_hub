@@ -1,0 +1,7 @@
+interface:
+  display_name: "中隐会 CS 非标问题处理"
+  short_description: "统一判断客户非标技术需求并生成客户交付方案和沟通话术"
+  default_prompt: "使用 $zhongyinhui-nonstandard-cs 评估客户非标技术需求，并生成合适的客户交付物与沟通话术。"
+
+policy:
+  allow_implicit_invocation: true
