@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Solution Builder"
+  short_description: "把模糊客户需求直接变成智能体提示词"
+  default_prompt: "Use $agent-solution-builder to infer the business logic behind a rough customer requirement and output one ready-to-use agent prompt directly."
+
+policy:
+  allow_implicit_invocation: true
