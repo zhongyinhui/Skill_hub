@@ -18,8 +18,8 @@
 - 不要把本机密钥、个人路径、聊天记录、临时日志提交进仓库。
 - 不要直接删除旧 skill。弃用时在 `CHANGELOG.md` 和 `README.md` 中标记，并说明替代方案。
 - Agent 在修改某个 skill 前，必须先阅读该 skill 的 `README.md`、`CHANGELOG.md` 和现有测试或示例。
+- 处理某个具体 skill 的创建、修改或测试时，不要顺手修改 `AGENTS.md`、`docs/` 流程文档、`skill-governance-router` 等底层治理规范；只有用户明确要求调整治理机制时才修改这些通用规则。
 - Agent 在完成需求确认、本地草稿、校验、commit、push、PR、review 或 merge 等阶段后，必须简短说明当前状态和建议下一步，不能只说“完成了”。
-- HTML、演示页、可视化手册或浏览器原型类交付物默认使用单个 `index.html`，通过前端状态模拟虚拟子页面；不要默认询问多文件页面结构，除非用户明确要求或存在明确技术原因。
 
 ## Module Routing Rules
 
@@ -81,7 +81,7 @@ _shared/git-intent-translator/v0.1.0
 
 `release` 分支的 PR 会触发 `.github/workflows/package-modules.yml`，按模块生成 zip。不要手工提交 `dist/` 下的打包产物。
 
-用户只说“上传”“保存到远程”或 “push” 时，默认上传到当前个人 `work/<name-pinyin>` 分支，不需要 PR；如果要进入 `master`、`release` 或正式团队使用，必须创建 PR 并审核。
+用户只说“上传”“保存到远程”或 “push” 时，默认上传到当前个人 `work/<name-pinyin>` 分支，不需要 PR；如果普通同事要进入 `master`、`release` 或正式团队使用，必须创建 PR 并审核。
 
 用户说“给负责人审核”时，Agent 必须先确认 PR 目标是 `master` 还是 `release`。
 

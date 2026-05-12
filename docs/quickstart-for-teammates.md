@@ -209,18 +209,6 @@ powershell -ExecutionPolicy Bypass -File tools/sync-codex-skills.ps1 -SkillName 
 
 如果同步后 `$<skill-name>` 仍不可见，通常需要新开 Codex 线程或刷新 skill 列表。
 
-## HTML 文件怎么做
-
-如果你要 Codex 生成 HTML 演示页、可视化说明页、操作手册或页面原型，默认就是一个文件：
-
-```text
-index.html
-```
-
-多个页面效果会放在这个文件里，用标签页、折叠区、hash route 或前端状态模拟。这样最方便保存、预览、上传和交接。
-
-只有你明确说“我要多文件真实页面”或确实有技术原因时，Codex 才会拆成 `pages/*.html`、`assets/` 等多文件结构。
-
 ## 本地验证
 
 每次提交前运行：
