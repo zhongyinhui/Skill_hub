@@ -14,7 +14,7 @@
 - skill 命名按功能命名，版本号写入 `VERSION`、`CHANGELOG.md` 和正式 tag；不要为了版本迭代频繁改 skill 目录名。
 - 分支名、skill 目录名、`SKILL.md` frontmatter `name`、手动调用名 `$skill-name`、tag、workflow name、job name、artifact name 等机器识别标识必须使用拼音或英文 ASCII，推荐小写字母、数字和连字符。
 - skill 目录名、`SKILL.md` frontmatter `name` 和手动调用名 `$skill-name` 必须一致；`SKILL.md` 是固定入口文件名，不是 skill 名。
-- 新建或改名正式 skill 时，默认同时维护正式归档路径和当前仓库 `.codex/skills/<skill-name>/` 项目可调用入口，让它能在本项目 skill 选择器中以项目来源（如 `Skills_hub`）出现；只有用户明确说明只做正式归档草稿时才可暂不同步。
+- 新建或改名正式 skill 时，默认同时维护正式归档路径和当前仓库 `.codex/skills/<skill-name>/` 项目可调用入口，让它能在本项目 skill 选择器中以当前工作目录名作为项目来源出现；只有用户明确说明只做正式归档草稿时才可暂不同步。
 - 更新 `.codex/skills/` 后，Agent 必须提示用户刷新 skill 列表或新开 Codex 线程；不要承诺后台会在固定秒数内自动加载。
 - 如果用户只说要创建一个 skill，Agent 必须先追问使用人、业务场景、输入材料、输出结果和可用标准，不要直接创建文件。
 - 不要把本机密钥、个人路径、聊天记录、临时日志提交进仓库。

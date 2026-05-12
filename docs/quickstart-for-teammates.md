@@ -203,7 +203,7 @@ modules/<module-id>/skills/<skill-name>/
 这里的 `.codex/skills/` 是当前项目里的目录，例如：
 
 ```text
-D:\中隐会\Skills_hub\.codex\skills\<skill-name>\
+D:\...\<workspace-folder-name>\.codex\skills\<skill-name>\
 ```
 
 它不是 C 盘全局 Codex 目录。C 盘全局目录通常类似：
@@ -221,7 +221,7 @@ C:\Users\<user>\.codex\skills\<skill-name>\
 | `C:\Users\<user>\.codex\skills/<skill-name>/` | 用户全局可调用，跨项目使用 |
 
 Skill Hub 现在默认先保证当前项目可调用；跨项目全局安装后面再单独设计。
-项目可调用入口出现在选择器里时，来源应显示当前项目，例如 `Skills_hub`。
+项目可调用入口出现在选择器里时，来源应显示当前工作目录名，而不是固定写死某个项目名。
 
 从正式归档路径刷新到项目可调用入口：
 

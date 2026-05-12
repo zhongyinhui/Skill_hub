@@ -134,12 +134,12 @@ modules/<module-id>/skills/<skill-name>/
 .codex/skills/<skill-name>/
 ```
 
-新建或改名 skill 时，默认同步这个项目可调用入口。这样它在 Skill Hub 项目的 skill 选择器里会显示当前项目来源，例如 `Skills_hub`。
+新建或改名 skill 时，默认同步这个项目可调用入口。这样它在 skill 选择器里会显示当前工作目录名作为项目来源，而不是固定写死某个仓库名。
 
 注意：这里的 `.codex/skills/` 是当前仓库里的项目级目录，例如：
 
 ```text
-D:\中隐会\Skills_hub\.codex\skills\<skill-name>\
+D:\...\<workspace-folder-name>\.codex\skills\<skill-name>\
 ```
 
 它不是 C 盘的全局 Codex 目录。C 盘全局目录通常类似：

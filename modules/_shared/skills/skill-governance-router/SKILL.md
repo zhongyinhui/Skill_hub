@@ -69,8 +69,8 @@ Machine identifiers include:
    - Formal repo path `modules/<module-id>/skills/<skill-name>/` is the review and release source.
    - Project callable path `.codex/skills/<skill-name>/` is what makes the skill appear in this project's `$` skill list.
    - For newly created or renamed skills, maintain the project callable entry by default unless the user explicitly says this is only a formal archive draft.
-   - In the selector, project callable skills should show the current project as their source, such as `Skills_hub`.
-   - Project `.codex/skills/` is relative to the current repository, such as `D:\...\Skills_hub\.codex\skills\`; it is not the global Codex home.
+   - In the selector, project callable skills should show the current workspace folder name as their source, not a hard-coded project name.
+   - Project `.codex/skills/` is relative to the current repository, such as `D:\...\<workspace-folder-name>\.codex\skills\`; it is not the global Codex home.
    - Global user skills live under the user's Codex home, such as `C:\Users\<user>\.codex\skills\`, and are a separate distribution choice.
    - To refresh the callable entry from the formal path, run `tools/sync-codex-skills.ps1`.
    - If `$skill-name` is not visible after sync, tell the user to refresh the skill list or start a new Codex thread; do not promise a fixed automatic load time.
@@ -270,7 +270,7 @@ When a user asks whether the skill can be called manually:
 - The file name `SKILL.md` must stay uppercase and is not the callable name.
 - Formal skill source: `modules/<module-id>/skills/<skill-name>/`.
 - Project callable entry: `.codex/skills/<skill-name>/`.
-- New or renamed skills should be synced to the project callable entry by default so the selector can show them with the current project source, such as `Skills_hub`.
+- New or renamed skills should be synced to the project callable entry by default so the selector can show them with the current workspace folder name as the source.
 - This project callable entry is not `C:\Users\<user>\.codex\skills\`; it belongs to the current repository and appears in the `$` list with this project's source name.
 - Use the global Codex skill directory only when the user explicitly wants the skill available across projects.
 - Use `powershell -ExecutionPolicy Bypass -File tools/sync-codex-skills.ps1 -SkillName <skill-name>` to refresh one project callable entry from the formal source.
