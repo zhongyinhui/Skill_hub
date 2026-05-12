@@ -122,7 +122,9 @@ merge 前必须确认目标分支、检查结果和发布影响。面向 `releas
 
 只有目标分支是 `release` 的 PR 会触发这个打包流程。
 
-PR 标题和描述按 `.github/pull_request_template.md` 填写。面向 `release` 的 PR 必须等待 `Package Module Zips` 通过后再合并。
+PR 标题和描述由 Codex 根据当前 diff、skill 内容、`VERSION`、`CHANGELOG.md`、项目可调用入口和校验结果生成，并按 `.github/pull_request_template.md` 填写。创建 PR 前，Codex 应先给出自己的模块、路径、提交范围、PR 内容和目标分支建议，让用户核实关键项。面向 `release` 的 PR 必须等待 `Package Module Zips` 通过后再合并。
+
+如果本机缺少 Git、GitHub CLI 或登录认证，Codex 应优先使用可用的 GitHub connector、网页或浏览器流程创建 PR；仍然阻塞时，输出完整 PR 申请包和明确阻断原因。
 
 PR 合并到 `release` 后，`release` 分支的 push 会再次运行同一套打包流程，并创建一个带版本号的 GitHub Release。
 发布包 tag 使用：

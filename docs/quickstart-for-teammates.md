@@ -5,8 +5,18 @@
 ## 你要记住的三句话
 
 1. skill 是团队可复用的方法包，不是临时提示词。
-2. 普通同事在自己的 `work/<name-pinyin>` 分支上工作。
+2. 普通同事在自己的 `work/<name-pinyin>` 分支上工作，`<name-pinyin>` 必须来自本人确认的真实姓名拼音或缩写。
 3. 做完后先验证，再提交，默认先 push 到自己的工作分支；要进入正式分支时才发 PR。
+
+## 不知道怎么开始时
+
+不要先猜 Git 命令，直接把这段话发给 Codex：
+
+```text
+我第一次使用 Skill Hub。请你主动带我走完整流程：先检查当前分支、未提交文件和未跟踪文件；再问我真实姓名或确认要用的姓名拼音/缩写，以及我要创建还是修改 skill；然后依次确认模块、命名、输入、输出、校验、commit、push 和是否需要 PR。每完成一步都给我下一步建议。
+```
+
+Codex 应该先给你一个当前状态摘要，然后只问当前阶段必须回答的问题，不应该一次性把所有术语和命令都丢给你。
 
 ## 第一次拿到仓库
 
@@ -23,6 +33,8 @@ git switch work/<name-pinyin>
 ```
 
 如果你还没有自己的工作分支：
+
+先确认真实姓名或本人认可的姓名拼音/缩写，再创建分支。不要直接用系统用户名、Git 用户名或 GitHub 用户名猜分支名。
 
 ```powershell
 git switch -c work/<name-pinyin>
@@ -66,6 +78,8 @@ git push -u origin work/zhangsan
 把这次 skill 改动整理一下，先跑校验，再准备提交到我的工作分支，最后发 PR 给负责人审核。
 ```
 
+Codex 应该自己根据当前改动生成 PR 标题和描述。你不用先学会怎么写 PR，只要核实 Codex 拟好的模块、范围、目标分支和是否提交申请。
+
 查看当前状态：
 
 ```text
@@ -76,6 +90,7 @@ git push -u origin work/zhangsan
 
 如果你要创建、上传、提交或发 PR，Codex 应该确认：
 
+- 这次个人工作分支归属谁，真实姓名或确认的姓名拼音/缩写是什么。
 - 这次只是上传到你的个人工作分支，还是要进入 `master` / `release`。
 - 这个 skill 具体解决什么场景，输入和输出是什么。
 - 这个 skill 最终归属哪个模块。
@@ -83,6 +98,8 @@ git push -u origin work/zhangsan
 - skill 名、目录名、frontmatter `name` 是否使用拼音或英文 ASCII。
 - 是否已经运行 `tools/validate-skill.ps1`。
 - 是否要 commit、push 或创建 PR。
+
+这些问题不应该让你从零回答。Codex 应先根据 skill 内容给出推荐方案，例如推荐模块、skill 名、路径、PR 标题和描述摘要，再让你确认或修改。
 
 如果 Codex 没问，你可以直接补一句：
 
@@ -92,7 +109,7 @@ git push -u origin work/zhangsan
 
 ## 创建一个 skill 的标准路径
 
-1. 确认当前分支是 `work/<name-pinyin>`。
+1. 检查当前分支和工作区状态，确认真实姓名或姓名拼音/缩写，并切到 `work/<name-pinyin>`。
 2. 问清 skill 场景、用户、输入、输出和可用标准。
 3. 确认 skill 归属模块：
    - `_shared（跨部门通用）`
@@ -108,10 +125,12 @@ git push -u origin work/zhangsan
 8. 有复杂行为时补 `examples/` 或 `tests/`。
 9. 运行校验。
 10. 做一次最小试运行或样例检查。
-11. 如需在本项目里直接 `$skill-name` 调用，确保它也在 `.codex/skills/<skill-name>/`。
+11. 默认同步 `.codex/skills/<skill-name>/`，确保它能在本项目里直接 `$skill-name` 调用。
 12. 提交 commit。
 13. push 到自己的工作分支。
 14. 如果要进入 `master` 或 `release`，再创建 PR，交给负责人审核。
+
+在第 7、9、12、13 步这类稳定节点，Codex 应只问两个方向：继续深化调整，还是进入下一步流程。继续深化时可以打磨内容、示例、测试、触发条件、输出格式或 README；进入下一步时再推进校验、commit、push 或 PR。
 
 ## 上传和 PR 的区别
 
@@ -139,6 +158,8 @@ work/<name-pinyin> -> release
 | 打包生成模块 zip 或发布 | `release` | 需要 |
 
 如果你只说“上传一下”，Codex 应该默认理解为 push 到你的个人工作分支。push 完成后，Codex 再问你是否要继续发 PR 到 `master` 或 `release`。
+
+如果你说“给负责人审核”或“创建 PR”，Codex 应先自动整理 PR 申请材料，再请你确认目标分支。
 
 ## 模块怎么选
 
@@ -200,6 +221,7 @@ C:\Users\<user>\.codex\skills\<skill-name>\
 | `C:\Users\<user>\.codex\skills/<skill-name>/` | 用户全局可调用，跨项目使用 |
 
 Skill Hub 现在默认先保证当前项目可调用；跨项目全局安装后面再单独设计。
+项目可调用入口出现在选择器里时，来源应显示当前项目，例如 `Skills_hub`。
 
 从正式归档路径刷新到项目可调用入口：
 
@@ -207,7 +229,7 @@ Skill Hub 现在默认先保证当前项目可调用；跨项目全局安装后�
 powershell -ExecutionPolicy Bypass -File tools/sync-codex-skills.ps1 -SkillName <skill-name>
 ```
 
-如果同步后 `$<skill-name>` 仍不可见，通常需要新开 Codex 线程或刷新 skill 列表。
+如果同步后 `$<skill-name>` 仍不可见，通常需要新开 Codex 线程或刷新 skill 列表；不要按固定秒数等待后台自动加载。
 
 ## 本地验证
 
@@ -255,6 +277,15 @@ PR 描述必须列清楚：
 - 是否更新 `CHANGELOG.md`。
 - 是否运行了 `tools/validate-skill.ps1`。
 - 需要负责人重点看什么。
+
+这些内容应由 Codex 根据 diff、skill 文件、`VERSION`、`CHANGELOG.md` 和校验结果自动生成。你只需要确认：
+
+- Codex 推荐的模块、skill 名、提交范围和 PR 内容是否准确。
+- 目标分支是 `master` 还是 `release`。
+- 是否现在提交 PR 申请。
+- 是否还要继续深化调整。
+
+如果你的电脑没有装 Git、GitHub CLI，或者登录认证有问题，Codex 应优先走 GitHub connector、网页或浏览器流程。仍然无法创建时，Codex 应给出完整 PR 标题、描述和明确阻断原因，不能让你从零写 PR。
 
 ## 负责人怎么审核
 
