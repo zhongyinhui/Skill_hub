@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+
+# 客户交付物不再保存在技能目录内。
+# 默认输出到项目工作目录：outputs/zhongyinhui-nonstandard-cs/
+
+*.tmp
+*.bak
+*.log
+*.png
