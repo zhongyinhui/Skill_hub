@@ -116,7 +116,7 @@ modules/<module-id>/skills/<skill-name>/
 5. 如果用户需要 `$skill-name` 手动调用，确认 `.codex/skills/<skill-name>/` 项目可调用入口是否同步更新。
 6. 上传、推送或创建 PR 前，再次确认模块归属。
 
-确认后不要立刻进入后续危险动作。每个阶段结束时，Agent 应说明当前状态和下一步建议，例如先校验、再 commit，或继续优化后再上传。
+确认后不要立刻进入后续危险动作。每个稳定阶段结束时，Agent 应说明当前状态，并只给两个方向：继续深化调整，或进入下一步流程。用户选择继续深化时，不推进 commit、push 或 PR。
 
 如果用户没有说明部门，Agent 必须提问：
 
@@ -167,3 +167,5 @@ PR 描述必须逐项列出路径：
 - `modules/customer-success/skills/kehu-xuqiu-jiaofu-fenxi`：新增逐字稿需求拆解 skill
 - `modules/sales/skills/shangji-genjin-fenxi`：新增商机跟进分析 skill
 ```
+
+PR 标题和描述默认由 Codex 根据当前 diff、skill 内容、`VERSION`、`CHANGELOG.md` 和校验结果生成，并按 `.github/pull_request_template.md` 填写；不要让没有开发经验的同事从零写 PR。Codex 应先给出自己的模块、路径、范围、PR 内容和目标分支建议，再让用户核实关键项。
