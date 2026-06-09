@@ -1,0 +1,4 @@
+interface:
+  display_name: "C-BL00 Controller"
+  short_description: "Coordinate C-line task scheduling and public-table writes safely."
+  default_prompt: "Use $c-line-c-bl00-controller to implement or review C-BL00."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "C-SK08 Supervisor Intervention Draft"
+  short_description: "Convert sales and customer risk into supervisor intervention drafts."
+  default_prompt: "Use $c-line-c-sk08-intervention-draft to implement or review C-SK08."

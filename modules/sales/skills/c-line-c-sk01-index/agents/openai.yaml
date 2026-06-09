@@ -1,0 +1,4 @@
+interface:
+  display_name: "C-SK01 Sales C01 Index"
+  short_description: "Maintain the sales-to-C01 governance table index."
+  default_prompt: "Use $c-line-c-sk01-index to implement or review C-SK01."
