@@ -1,2 +1,7 @@
 /dist/
+.opencode/
+out/
+__pycache__/
+*.py[cod]
+*.pyo
 

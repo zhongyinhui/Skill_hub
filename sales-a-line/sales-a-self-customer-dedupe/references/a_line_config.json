@@ -1,0 +1,158 @@
+{
+  "version": "2026-06-08-a-line-live",
+  "identity": "user",
+  "wiki_source": {
+    "root_url": "https://lcnpt5xjzbya.feishu.cn/wiki/RbkywXMqFixuPcklqiMcSW5Wnke",
+    "root_node_token": "RbkywXMqFixuPcklqiMcSW5Wnke",
+    "root_title": "A_customer_lifecycle_formal_ledger_line"
+  },
+  "customer_table_model": {
+    "all_customer_files_url": "https://lcnpt5xjzbya.feishu.cn/wiki/KzfjwKeBoigCERkPMmLcIUE7nVb?table=tblT0pxNirTRQw9H&view=vewopxdxmh",
+    "sample_individual_customer_table_url": "https://lcnpt5xjzbya.feishu.cn/wiki/QKeTwIrZEiqbaBkYdh5cRLpPndh?table=tblxQmeaXDGPkAs4&view=vewR1084OR",
+    "sample_is_write_target": false,
+    "template_root_url": "https://lcnpt5xjzbya.feishu.cn/wiki/ZBhYwFZLciISlDknDPNcuOgonXg",
+    "per_customer_ref_fields": [
+      "individual_customer_table_url",
+      "ledger_table_ref",
+      "evidence_ref_table_ref",
+      "artifacts_ref_table_ref",
+      "handoff_ref_table_ref",
+      "latest_snapshot_table_ref"
+    ]
+  },
+  "customer_container_create": {
+    "enabled": true,
+    "space_id": "7644052943932099524",
+    "parent_node_token": "TRqiwlQaFinQsukkzrgcTFGcnWg",
+    "parent_title": "01_customer_ledger",
+    "template_node_token": "NsUawh3R5ikz5bkqyoccr3jKnIe",
+    "template_base_token": "C6pDbTN9faWZ9VsVOrKcgAHenqh",
+    "template_table_id": "tbl0puwuM6rsjL0w",
+    "template_title": "_A_LINE_CUSTOMER_LEDGER_TEMPLATE/",
+    "cleanup_blank_records": true,
+    "copy_ready_retries": 8,
+    "copy_ready_delay_seconds": 2,
+    "wiki_domain": "https://lcnpt5xjzbya.feishu.cn",
+    "title_template": "{customer_id}/",
+    "obj_type": "bitable",
+    "table_name": "ledger",
+    "fields": ["time", "customer_id", "ledger", "latest_snapshot", "evidence_ref", "artifacts_ref", "handoff_ref"]
+  },
+  "lark_cli_base": {
+    "lark_cli_ps1": "C:/Users/HUAWEI/AppData/Roaming/npm/lark-cli.ps1",
+    "as": "user",
+    "table_base_tokens": {
+      "A01_customer_alias": "H5A7bXQtJaCVd0sqIircwepYnYf",
+      "A03_all_customer_files": "TqVmbOv2faej8MsJtkSccIv2nKb",
+      "A04_sales_lead_pool": "EfJrbbDY7a3K55sZFQBcemL5nkT",
+      "A06_a_line_index": "IJK4bY3HhaWFcnsqwUncAV9rnje",
+      "A07_a_line_run_log": "OqX3blrtOaitzRsePw1cKXJRn7d"
+    },
+    "table_ids": {
+      "A01_customer_alias": "tbl86wHfHgKpjfJp",
+      "A03_all_customer_files": "tblT0pxNirTRQw9H",
+      "A04_sales_lead_pool": "tblXEzJVJYfVGHIb",
+      "A06_a_line_index": "tbl2fHDgqP7f4gyq",
+      "A07_a_line_run_log": "tblOAtmYZTrhBtkm"
+    }
+  },
+  "tables": {
+    "A99_individual_customer_container": {
+      "table_ref": "dynamic_per_customer_table",
+      "fields": ["time", "customer_id", "ledger", "latest_snapshot", "evidence_ref", "artifacts_ref", "handoff_ref"]
+    },
+    "A03_all_customer_files": {
+      "table_ref": "tblT0pxNirTRQw9H",
+      "fields": ["customer_id", "customer_name", "company_name", "current_status", "source_id", "source_type", "current_sales_id", "industry", "region", "phone", "wechat_id", "wecom_id", "customer_role", "ai_cognition_level", "core_needs", "current_objections", "buying_signals", "latest_snapshot_text", "latest_snapshot_json", "latest_ledger_block_id", "current_stage", "customer_rating", "budget_level", "decision_power", "orphan_confirm_status", "archive_status", "created_at", "updated_at", "next_followup_at", "recommended_next_action", "last_contact_summary", "individual_customer_table_url", "ledger_table_ref", "evidence_ref_table_ref", "artifacts_ref_table_ref", "handoff_ref_table_ref", "latest_snapshot_table_ref"]
+    },
+    "A01_customer_alias": {
+      "table_ref": "tbl86wHfHgKpjfJp",
+      "fields": ["alias_id", "customer_id", "alias_value", "normalized_alias", "alias_type", "source_type", "confidence_score", "conflict_status", "is_primary_alias", "created_at", "updated_at", "status", "remark"]
+    },
+    "A06_a_line_index": {
+      "table_ref": "tbl2fHDgqP7f4gyq",
+      "fields": ["source_map_id", "source_id", "source_type", "source_department", "raw_customer_name", "raw_phone", "candidate_customer_ids", "linked_customer_id", "accepted_sales_id", "mapping_status", "created_at", "updated_at", "remark"]
+    },
+    "A04_sales_lead_pool": {
+      "table_ref": "tblXEzJVJYfVGHIb",
+      "fields": ["lead_name", "raw_customer_name", "raw_company_name", "raw_phone", "source_id", "source_department", "assigned_sales_id", "matched_customer_id", "candidate_customer_ids", "transfer_to_a_status", "a_line_action", "status", "created_at", "updated_at", "remark"]
+    },
+    "A07_a_line_run_log": {
+      "table_ref": "tblOAtmYZTrhBtkm",
+      "fields": ["log_id", "run_id", "operation_id", "script_name", "script_version", "trigger_table", "trigger_record_id", "trigger_source", "source_id", "lead_id", "alias_id", "ledger_block_id", "snapshot_id", "evidence_id", "artifact_id", "handoff_id", "target_table", "target_record_id", "customer_id", "operation_name", "operation_type", "operation_status", "operation_level", "idempotency_key", "error_message", "created_at", "start_time", "end_time", "input_payload_summary", "output_payload_summary", "remark"]
+    }
+  },
+  "field_aliases": {
+    "A03_all_customer_files": {
+      "customer_status": "current_status",
+      "budget_signal": "budget_level"
+    },
+    "A01_customer_alias": {
+      "alias_name": "alias_value",
+      "source_line": "source_type",
+      "confirm_status": "conflict_status"
+    },
+    "A06_a_line_index": {
+      "index_id": "source_map_id",
+      "customer_id": "linked_customer_id",
+      "customer_name": "raw_customer_name",
+      "current_sales_id": "accepted_sales_id",
+      "source_ids": "source_id",
+      "status": "mapping_status"
+    },
+    "A07_a_line_run_log": {
+      "run_type": "script_name",
+      "source_line": "trigger_table",
+      "source_record_id": "trigger_record_id",
+      "operation": "operation_name",
+      "status": "operation_status"
+    }
+  },
+  "read_field_aliases": {
+    "A03_all_customer_files": {
+      "evidence_ref": "evidence_ref_table_ref",
+      "artifact_ref": "artifacts_ref_table_ref"
+    }
+  },
+  "drop_fields": {
+    "A03_all_customer_files": ["company_size", "cash_flow", "consumption_ability"],
+    "A01_customer_alias": ["source_record_id", "created_by"],
+    "A06_a_line_index": ["alias_keywords"],
+    "A07_a_line_run_log": []
+  },
+  "value_maps": {
+    "A03_all_customer_files": {
+      "current_status": {"active": "跟进中", "pending": "待接收", "accepted": "跟进中", "following": "跟进中"},
+      "budget_level": {"high": "高", "medium": "中", "mid": "中", "low": "低", "unknown": "未知"},
+      "decision_power": {"strong": "强", "medium": "中", "mid": "中", "weak": "弱", "unknown": "未知"}
+    },
+    "A01_customer_alias": {
+      "alias_type": {"name": "公司简称", "self_reported": "销售口述", "phone": "手机备注", "wechat": "微信昵称", "wecom": "企微昵称", "crm": "CRM旧名", "market": "市场来源名"},
+      "source_type": {"A-SK02": "sales_manual", "A-SK03": "sales_manual", "A-SK04": "sales_manual", "self_reported": "sales_manual"},
+      "conflict_status": {"confirmed": "无冲突", "approved": "无冲突", "yes": "无冲突", "pending": "待人工确认", "duplicate": "疑似重复"}
+    },
+    "A06_a_line_index": {
+      "mapping_status": {"active": "已映射", "mapped": "已映射", "review": "待查重", "pending": "待处理", "conflict": "有冲突"}
+    },
+    "A07_a_line_run_log": {
+      "operation_status": {"pass": "success", "rejected": "failed", "needs_confirm": "partial", "error": "failed"}
+    }
+  },
+  "field_types": {
+    "A03_all_customer_files": {"created_at": "datetime", "updated_at": "datetime", "latest_snapshot_json": "text", "core_needs": "text", "current_objections": "text", "buying_signals": "text"},
+    "A01_customer_alias": {"created_at": "datetime", "updated_at": "datetime", "confidence_score": "number"},
+    "A06_a_line_index": {"created_at": "datetime", "updated_at": "datetime", "source_id": "text", "candidate_customer_ids": "text"},
+    "A07_a_line_run_log": {"created_at": "datetime", "start_time": "datetime", "end_time": "datetime", "input_payload_summary": "text", "output_payload_summary": "text"}
+  },
+  "attachment_tables": {
+    "A99_individual_customer_container": {
+      "mode": "ledger_json",
+      "ledger_field": "ledger",
+      "latest_snapshot_field": "latest_snapshot",
+      "evidence_field": "evidence_ref",
+      "artifacts_field": "artifacts_ref",
+      "handoff_field": "handoff_ref",
+      "source_url": "dynamic per-customer table from A03_all_customer_files refs"
+    }
+  }
+}

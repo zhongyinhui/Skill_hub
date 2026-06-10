@@ -1,0 +1,7 @@
+interface:
+  display_name: "E-BL09 News Radar"
+  short_description: "Write news-triggered E-line opportunities"
+  default_prompt: "Use $sales-e-news-radar to record a news-triggered E-line opportunity."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-SK11 Consistency Audit"
+  short_description: "Read-only A-line consistency checks"
+  default_prompt: "Use $sales-a-consistency-audit to inspect A-line customer/index/alias consistency."
+
+policy:
+  allow_implicit_invocation: true

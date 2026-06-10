@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-SK01 Lead Ingest"
+  short_description: "Capture raw source leads before binding"
+  default_prompt: "Use $sales-a-lead-ingest to capture a raw A-line lead before customer binding."
+
+policy:
+  allow_implicit_invocation: true

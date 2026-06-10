@@ -1,0 +1,7 @@
+interface:
+  display_name: "E-BL03 Customer Activation"
+  short_description: "Create activation opportunities from A snapshots"
+  default_prompt: "Use $sales-e-customer-activation to record an E-line customer activation opportunity."
+
+policy:
+  allow_implicit_invocation: true

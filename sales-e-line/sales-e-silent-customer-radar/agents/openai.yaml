@@ -1,0 +1,7 @@
+interface:
+  display_name: "E-BL13 Silent Customer Radar"
+  short_description: "Write silent-customer activation records"
+  default_prompt: "Use $sales-e-silent-customer-radar to record a silent-customer activation recommendation."
+
+policy:
+  allow_implicit_invocation: true

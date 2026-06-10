@@ -1,0 +1,7 @@
+interface:
+  display_name: "E-BL07 Influence Adjust"
+  short_description: "Update E05 active influence weights"
+  default_prompt: "Use $sales-e-influence-adjust to update an E05 active influence-factor state row."
+
+policy:
+  allow_implicit_invocation: true

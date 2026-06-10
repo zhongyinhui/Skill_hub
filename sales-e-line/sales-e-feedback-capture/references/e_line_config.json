@@ -1,0 +1,120 @@
+{
+  "version": "2026-06-09-e-line-p0",
+  "identity": "user",
+  "wiki_source": {
+    "root_url": "https://lcnpt5xjzbya.feishu.cn/wiki/AQRhwDUDuiirwQkQWzdcuAR3nYT",
+    "root_node_token": "AQRhwDUDuiirwQkQWzdcuAR3nYT",
+    "root_title": "E_黑灯主动狙击雷达"
+  },
+  "lark_cli_base": {
+    "lark_cli_ps1": "C:/Users/HUAWEI/AppData/Roaming/npm/lark-cli.ps1",
+    "as": "user",
+    "table_base_tokens": {
+      "E01_task_registry": "HM0tbI2ZAaMpPKsf5XtcQnhOn1c",
+      "E01_output_records": "J6w6bINKHalaWdsYYqQc6RRVn7d",
+      "E05_global_state": "AEwrbW3ZTazKUDsJOtJclxjtnkc",
+      "E05_sales_state": "NxiEbKZEQaGkrMsYWfKcga3ynlg",
+      "E05_weapon_state": "YWbvbs68sasmQwseMUPcoCBknZb",
+      "E05_segment_state": "K8YYbfr0BardmbsblAScNLDwnMd",
+      "E05_weekly_snapshot": "BX0hbL8uMajCVQs0xV2cTue7nkd",
+      "E05_major_change_log": "By9vbBaAda0TJ7sRlTHcjyzunHm",
+      "E06_template_index": "EajJb26dfa64vdslM7lc4rA5nmc"
+    },
+    "table_ids": {
+      "E01_task_registry": "tblK9Jnsj60ki17H",
+      "E01_output_records": "tbl5wkOJEFVdDGL0",
+      "E05_global_state": "tblYJpznNLnrk7XG",
+      "E05_sales_state": "tbluIlTtM2ajQE1A",
+      "E05_weapon_state": "tblIneYDP9yjsVgM",
+      "E05_segment_state": "tblXtDMDq28fJSRr",
+      "E05_weekly_snapshot": "tblW4J7up4SEPkF0",
+      "E05_major_change_log": "tbl3v10Ui9bycQk5",
+      "E06_template_index": "tblmUBvqaYPT8Dhb"
+    }
+  },
+  "tables": {
+    "E01_task_registry": {
+      "table_ref": "tblK9Jnsj60ki17H",
+      "fields": ["e_task_id", "task_name", "task_type", "blacklight_type", "target_customer_scope", "input_sources", "rule_table_refs", "output_template_id", "write_to_target", "output_type", "scan_frequency", "priority", "status", "last_run_at", "next_run_at", "last_run_status", "error_summary", "owner", "version", "remark"]
+    },
+    "E01_output_records": {
+      "table_ref": "tbl5wkOJEFVdDGL0",
+      "fields": ["e_output_id", "e_task_id", "run_batch_id", "run_date", "created_at", "updated_at", "customer_id", "customer_name_snapshot", "target_sales_id", "target_sales_name", "source_a_snapshot_ref", "source_b_record_ref", "source_c_feedback_ref", "source_d_weapon_ref", "source_signal_ref", "source_signal_type", "opportunity_type", "recommendation_type", "recommended_action", "recommendation_reason", "confidence_score", "priority_score", "recommended_dline_skill_ids", "output_template_id", "evidence_refs", "b_action_map_id", "b_action_map_ref", "write_to_b_status", "sync_status", "error_message", "adoption_feedback_status", "actual_action_taken", "customer_response_summary", "c_effect_ref", "final_effect_status", "non_adoption_reason"]
+    },
+    "E05_global_state": {
+      "table_ref": "tblYJpznNLnrk7XG",
+      "fields": ["global_factor_id", "factor_key", "factor_type", "current_weight", "previous_weight", "weight_delta", "positive_feedback_count", "negative_feedback_count", "adoption_rate_7d", "effectiveness_rate_7d", "confidence_score", "update_source", "last_update_reason", "status", "updated_at"]
+    },
+    "E05_sales_state": {
+      "table_ref": "tbluIlTtM2ajQE1A",
+      "fields": ["sales_factor_id", "sales_id", "sales_name", "factor_type", "current_weight", "previous_weight", "adoption_rate_30d", "effectiveness_rate_30d", "top_rejection_reason", "do_not_recommend_flag", "confidence_score", "update_source", "updated_at", "remark"]
+    },
+    "E05_weapon_state": {
+      "table_ref": "tblIneYDP9yjsVgM",
+      "fields": ["weapon_factor_id", "dline_skill_id", "weapon_name", "customer_stage", "customer_segment", "current_weight", "previous_weight", "hit_rate_30d", "use_rate_30d", "recent_positive_feedback", "recent_negative_feedback", "risk_penalty", "recommendation_status", "d06_version_status", "c02_metric_ref", "updated_at"]
+    },
+    "E05_segment_state": {
+      "table_ref": "tblXtDMDq28fJSRr",
+      "fields": ["segment_factor_id", "customer_segment", "customer_stage", "customer_rating", "opportunity_type", "current_weight", "previous_weight", "response_rate_30d", "effectiveness_rate_30d", "confidence_score", "status", "updated_at"]
+    },
+    "E05_weekly_snapshot": {
+      "table_ref": "tblW4J7up4SEPkF0",
+      "fields": ["snapshot_id", "week_start", "week_end", "snapshot_scope", "source_state_table", "metrics_summary", "major_changes", "snapshot_json", "created_by", "created_at", "remark"]
+    },
+    "E05_major_change_log": {
+      "table_ref": "tbl3v10Ui9bycQk5",
+      "fields": ["change_id", "affected_state_table", "affected_factor_id", "change_type", "old_value", "new_value", "change_reason", "evidence_refs", "impact_scope", "review_required", "review_status", "reviewer", "effective_at", "created_at", "remark"]
+    },
+    "E06_template_index": {
+      "table_ref": "tblmUBvqaYPT8Dhb",
+      "fields": ["template_id", "template_name", "output_type", "target_receiver", "applicable_task_type", "applicable_customer_stage", "template_ref", "output_schema_ref", "required_fields", "optional_fields", "tone_style", "version", "status", "reviewer", "updated_at", "remark"]
+    }
+  },
+  "field_aliases": {
+    "E01_output_records": {
+      "dline_skill_ids": "recommended_dline_skill_ids",
+      "a_snapshot_ref": "source_a_snapshot_ref",
+      "b_record_ref": "source_b_record_ref",
+      "c_feedback_ref": "source_c_feedback_ref",
+      "d_weapon_ref": "source_d_weapon_ref",
+      "action": "recommended_action",
+      "reason": "recommendation_reason"
+    }
+  },
+  "drop_fields": {
+    "E01_task_registry": [],
+    "E01_output_records": [],
+    "E05_global_state": [],
+    "E05_sales_state": ["customer_rating"],
+    "E05_weapon_state": ["customer_rating"],
+    "E05_segment_state": [],
+    "E05_weekly_snapshot": [],
+    "E05_major_change_log": []
+  },
+  "field_types": {
+    "E01_task_registry": {"target_customer_scope": "multi_select", "output_type": "multi_select"},
+    "E01_output_records": {"confidence_score": "number", "priority_score": "number", "recommended_dline_skill_ids": "text", "evidence_refs": "text"},
+    "E05_global_state": {"current_weight": "number", "previous_weight": "number", "weight_delta": "number", "confidence_score": "number"},
+    "E05_sales_state": {"current_weight": "number", "previous_weight": "number", "confidence_score": "number"},
+    "E05_weapon_state": {"current_weight": "number", "previous_weight": "number", "risk_penalty": "number"},
+    "E05_segment_state": {"current_weight": "number", "previous_weight": "number", "confidence_score": "number"},
+    "E05_weekly_snapshot": {"metrics_summary": "text", "major_changes": "text", "snapshot_json": "text"},
+    "E05_major_change_log": {"old_value": "text", "new_value": "text", "evidence_refs": "text"},
+    "E06_template_index": {"required_fields": "text", "optional_fields": "text"}
+  },
+  "select_options": {
+    "E01_task_registry": {
+      "task_type": ["AI新闻扫描", "地区政策扫描", "行业机会扫描", "沉默客户激活", "案例激活", "政策激活", "D线武器匹配", "行动地图生成", "影响因子更新"],
+      "blacklight_type": ["日更黑灯", "周更黑灯", "月更黑灯", "事件触发黑灯"],
+      "target_customer_scope": ["全客户", "高意向客户", "沉默客户", "报价前客户", "指定销售客户", "指定行业客户"],
+      "write_to_target": ["B线行动地图", "E线输出记录", "C线候选", "D线候选", "总经办候选"],
+      "output_type": ["新闻机会", "政策机会", "行业机会", "激活建议", "D线武器推荐", "次日行动地图", "上浮信号"]
+    }
+  },
+  "boundaries": {
+    "e_line_role": "nightly_blacklight_radar",
+    "may_read": ["A-line customer snapshots", "B-line action feedback", "C-line effect attribution", "D-line weapon state"],
+    "may_write": ["E01 task registry", "E01.2 output records", "E05 active states", "E05 weekly snapshots", "E05 major change logs"],
+    "must_not_write": ["A-line formal customer facts", "D-line generated weapon artifacts", "new Feishu fields", "new select options"]
+  }
+}

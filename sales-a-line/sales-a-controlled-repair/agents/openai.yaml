@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-SK12 Controlled Repair"
+  short_description: "Confirmed A-line backfill and repairs"
+  default_prompt: "Use $sales-a-controlled-repair to apply confirmed A-line consistency repairs."
+
+policy:
+  allow_implicit_invocation: true

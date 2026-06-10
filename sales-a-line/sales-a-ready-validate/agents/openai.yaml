@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-SK05 Ready Validate"
+  short_description: "B-line A-ready package gatekeeping"
+  default_prompt: "Use $sales-a-ready-validate to validate a B-line a_ready_package before A-line entry."
+
+policy:
+  allow_implicit_invocation: true

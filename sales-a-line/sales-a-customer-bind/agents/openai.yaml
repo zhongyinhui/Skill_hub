@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-SK02 Customer Bind"
+  short_description: "Confirmed lead to customer_id binding"
+  default_prompt: "Use $sales-a-customer-bind to bind a confirmed lead to a customer_id."
+
+policy:
+  allow_implicit_invocation: true
