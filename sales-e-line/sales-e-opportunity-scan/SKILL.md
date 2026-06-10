@@ -7,6 +7,7 @@ description: Use when E-line blacklight scanning finds external news, policy, in
 
 ## Purpose
 Use this skill for E-BL02: convert a scanned external signal into an E-line opportunity or recommendation row in `E01_output_records`.
+E02 rule config tables are maintained by the specialized radar skills: E09 for news sources, E10 for policy scan rules, and E11 for industry opportunity rules.
 
 ## Required Workflow
 1. Read `references/contract.md`.

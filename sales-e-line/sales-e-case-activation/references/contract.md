@@ -23,3 +23,11 @@ Write case-triggered activation opportunities to `E01_output_records`.
 
 ## Writes
 - `E01_output_records`, keyed by `e_output_id`.
+- In explicit `mode=rule_config`: `E04_2_case_activation_rule`, keyed by `case_rule_id`.
+
+## Rule Config Mode
+Required rule inputs:
+- `case_rule_id`
+- `case_type`
+- `case_match_condition`
+- `activation_angle`

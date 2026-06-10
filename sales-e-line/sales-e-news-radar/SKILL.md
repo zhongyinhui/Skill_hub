@@ -7,10 +7,12 @@ description: Use when E-line blacklight news scanning finds an AI, market, compe
 
 ## Purpose
 Use this skill for E-BL09: write news-triggered opportunity records to `E01_output_records`.
+In explicit `mode=rule_config`, the same original skill maintains `E02_1_news_source_whitelist`.
 
 ## Required Workflow
 1. Read `references/contract.md`.
 2. Prepare input JSON with task, batch, source signal reference, and recommendation reason.
+   For source whitelist maintenance, set `mode` to `rule_config` or `source_whitelist`.
 3. Run `python scripts/e_bl09_news_radar.py --input input.json --config references/e_line_config.json --dry-run`.
 4. Execute only after dry-run is clean.
 

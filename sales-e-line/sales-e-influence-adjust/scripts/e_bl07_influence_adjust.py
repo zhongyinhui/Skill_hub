@@ -7,6 +7,7 @@ import sys
 import tempfile
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -176,6 +177,28 @@ PROHIBITED_FIELDS = {
 }
 
 ALLOWED_STATUS = {"pass", "needs_confirm", "rejected", "executed", "error"}
+URL_FIELD_NAMES = {
+    "source_a_snapshot_ref",
+    "source_b_record_ref",
+    "source_c_feedback_ref",
+    "source_d_weapon_ref",
+    "source_signal_ref",
+    "b_action_map_ref",
+    "source_url",
+    "policy_source_url",
+    "template_ref",
+    "output_schema_ref",
+}
+PLACEHOLDER_URL_HOSTS = {
+    "example.com",
+    "www.example.com",
+    "example.org",
+    "www.example.org",
+    "example.net",
+    "www.example.net",
+    "localhost",
+    "127.0.0.1",
+}
 
 
 def spec():
@@ -252,6 +275,8 @@ def drop_fields(config, table):
 
 def transform_value(config, table, field, value):
     target_type = config.get("field_types", {}).get(table, {}).get(field)
+    if target_type == "url" and isinstance(value, str):
+        return value.strip()
     if target_type == "text" and isinstance(value, (dict, list)):
         return json.dumps(value, ensure_ascii=False)
     if target_type == "number" and isinstance(value, str):
@@ -435,6 +460,43 @@ def validate_options(config, write):
     return blocked
 
 
+def extract_url(value):
+    if not isinstance(value, str):
+        return ""
+    text = value.strip()
+    if text.endswith(")") and "](" in text:
+        return text[text.rfind("](") + 2:-1].strip()
+    return text
+
+
+def url_fields_for(config, table):
+    typed = {
+        field
+        for field, target_type in config.get("field_types", {}).get(table, {}).items()
+        if target_type == "url"
+    }
+    known = set(table_fields(config, table)) & URL_FIELD_NAMES
+    return typed | known
+
+
+def validate_url_fields(config, write):
+    table = write["table"]
+    blocked = []
+    for field in sorted(url_fields_for(config, table) & set(write.get("fields", {}))):
+        value = write["fields"].get(field)
+        if value in (None, "", [], {}):
+            continue
+        for item in as_list(value):
+            url = extract_url(item)
+            parsed = urlparse(url)
+            host = parsed.netloc.lower().split("@")[-1].split(":")[0]
+            if parsed.scheme not in {"http", "https"} or not host:
+                blocked.append(f"{table}.{field} must be an http(s) URL")
+            elif host in PLACEHOLDER_URL_HOSTS or host.endswith(".example.com"):
+                blocked.append(f"{table}.{field} cannot use placeholder URL: {url}")
+    return blocked
+
+
 def validate_writes(config, writes):
     blocked = []
     normalized = []
@@ -445,7 +507,7 @@ def validate_writes(config, writes):
         write = dict(write)
         write["fields"] = fields
         bad = sorted(set(fields) & PROHIBITED_FIELDS)
-        if bad and table != "E05_segment_state":
+        if bad:
             blocked.append(f"{table} contains prohibited fields: {', '.join(bad)}")
         if not existing:
             blocked.append(f"missing field snapshot for {table}")
@@ -454,6 +516,7 @@ def validate_writes(config, writes):
             if missing:
                 blocked.append(f"{table} missing fields: {', '.join(missing)}")
         blocked.extend(validate_options(config, write))
+        blocked.extend(validate_url_fields(config, write))
         if not table_base_token(config, table):
             blocked.append(f"missing base token for {table}")
         if not table_id(config, table):

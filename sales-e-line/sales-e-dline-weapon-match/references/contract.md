@@ -26,5 +26,11 @@ Record D-line weapon recommendations in `E01_output_records`.
 ## Writes
 - `E01_output_records`, keyed by `e_output_id`.
 
+## Read-Only Rule Sources
+- `E03_value_point_to_dline_skill_map`
+- `E03_customer_stage_to_weapon_map`
+
+These E03 JSON docs guide matching only. This skill does not write them.
+
 ## Blocks
 Reject when no D-line skill ID is supplied or write fields are outside E01.2.

@@ -23,3 +23,11 @@ Write silent-customer activation opportunities to `E01_output_records`.
 
 ## Writes
 - `E01_output_records`, keyed by `e_output_id`.
+- In explicit `mode=rule_config`: `E04_1_silent_customer_activation_rule`, keyed by `silent_rule_id`.
+
+## Rule Config Mode
+Required rule inputs:
+- `silent_rule_id`
+- `silent_days_threshold`
+- `activation_type`
+- `recommended_message_angle`

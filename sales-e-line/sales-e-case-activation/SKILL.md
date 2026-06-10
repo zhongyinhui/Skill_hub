@@ -7,10 +7,12 @@ description: Use when E-line blacklight case matching finds a customer activatio
 
 ## Purpose
 Use this skill for E-BL12: record case-based customer activation opportunities in `E01_output_records`.
+In explicit `mode=rule_config`, it maintains `E04_2_case_activation_rule`.
 
 ## Required Workflow
 1. Read `references/contract.md`.
 2. Prepare input JSON with customer, A snapshot reference, case signal reference, and recommendation reason.
+   For case activation rule maintenance, set `mode` to `rule_config`.
 3. Run `python scripts/e_bl12_case_activation.py --input input.json --config references/e_line_config.json --dry-run`.
 4. Execute only after dry-run is clean.
 

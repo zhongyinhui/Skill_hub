@@ -7,10 +7,12 @@ description: Use when E-line blacklight detects a silent, stalled, or long-uncon
 
 ## Purpose
 Use this skill for E-BL13: record silent-customer activation opportunities in `E01_output_records`.
+In explicit `mode=rule_config`, it maintains `E04_1_silent_customer_activation_rule`.
 
 ## Required Workflow
 1. Read `references/contract.md`.
 2. Prepare input JSON with customer, A snapshot reference, and recommendation reason.
+   For silent activation rule maintenance, set `mode` to `rule_config`.
 3. Run `python scripts/e_bl13_silent_customer_radar.py --input input.json --config references/e_line_config.json --dry-run`.
 4. Execute only after dry-run is clean.
 

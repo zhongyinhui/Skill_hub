@@ -23,3 +23,12 @@ Write industry-triggered opportunity rows to `E01_output_records`.
 
 ## Writes
 - `E01_output_records`, keyed by `e_output_id`.
+- In explicit `mode=rule_config`: `E02_3_industry_ai_opportunity_rule`, keyed by `industry_rule_id`.
+
+## Rule Config Mode
+Required rule inputs:
+- `industry_rule_id`
+- `industry`
+- `opportunity_type`
+- `signal_keywords`
+- `value_point`

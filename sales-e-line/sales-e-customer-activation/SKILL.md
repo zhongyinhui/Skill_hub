@@ -7,6 +7,7 @@ description: Use when E-line blacklight rules identify silent-customer, policy, 
 
 ## Purpose
 Use this skill for E-BL03: create an activation opportunity in `E01.2` from A-line customer snapshots and E04 activation rules.
+E04 rule config tables are maintained by E13 silent-customer radar, E12 case activation, and E10 policy radar in explicit rule config mode.
 
 ## Required Workflow
 1. Read `references/contract.md`.

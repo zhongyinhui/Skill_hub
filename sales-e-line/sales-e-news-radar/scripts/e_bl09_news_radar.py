@@ -7,6 +7,7 @@ import sys
 import tempfile
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -112,8 +113,170 @@ SPECS = {
     },
 }
 
+RULE_TABLE_ALIASES = {
+    "e02.1": "E02_1_news_source_whitelist",
+    "e02_1": "E02_1_news_source_whitelist",
+    "news_source": "E02_1_news_source_whitelist",
+    "news_source_whitelist": "E02_1_news_source_whitelist",
+    "ai_news_source_whitelist": "E02_1_news_source_whitelist",
+    "e02.2": "E02_2_policy_scan_rule",
+    "e02_2": "E02_2_policy_scan_rule",
+    "policy_scan": "E02_2_policy_scan_rule",
+    "policy_scan_rule": "E02_2_policy_scan_rule",
+    "region_policy_scan_rule": "E02_2_policy_scan_rule",
+    "e02.3": "E02_3_industry_ai_opportunity_rule",
+    "e02_3": "E02_3_industry_ai_opportunity_rule",
+    "industry_ai_opportunity": "E02_3_industry_ai_opportunity_rule",
+    "industry_ai_opportunity_rule": "E02_3_industry_ai_opportunity_rule",
+    "e04.1": "E04_1_silent_customer_activation_rule",
+    "e04_1": "E04_1_silent_customer_activation_rule",
+    "silent_customer": "E04_1_silent_customer_activation_rule",
+    "silent_customer_activation": "E04_1_silent_customer_activation_rule",
+    "silent_customer_activation_rule": "E04_1_silent_customer_activation_rule",
+    "e04.2": "E04_2_case_activation_rule",
+    "e04_2": "E04_2_case_activation_rule",
+    "case_activation": "E04_2_case_activation_rule",
+    "case_activation_rule": "E04_2_case_activation_rule",
+    "e04.3": "E04_3_policy_activation_rule",
+    "e04_3": "E04_3_policy_activation_rule",
+    "policy_activation": "E04_3_policy_activation_rule",
+    "policy_activation_rule": "E04_3_policy_activation_rule",
+}
+
+RULE_MODE_VALUES = {
+    "rule_config",
+    "rule_table",
+    "source_whitelist",
+    "scan_rule",
+    "activation_rule",
+    "policy_activation_rule",
+}
+
+SCRIPT_RULE_DEFAULTS = {
+    "e_bl09_news_radar.py": "E02_1_news_source_whitelist",
+    "e_bl10_policy_radar.py": "E02_2_policy_scan_rule",
+    "e_bl11_industry_radar.py": "E02_3_industry_ai_opportunity_rule",
+    "e_bl12_case_activation.py": "E04_2_case_activation_rule",
+    "e_bl13_silent_customer_radar.py": "E04_1_silent_customer_activation_rule",
+}
+
+SCRIPT_RULE_ALLOWED = {
+    "e_bl09_news_radar.py": {"E02_1_news_source_whitelist"},
+    "e_bl10_policy_radar.py": {"E02_2_policy_scan_rule", "E04_3_policy_activation_rule"},
+    "e_bl11_industry_radar.py": {"E02_3_industry_ai_opportunity_rule"},
+    "e_bl12_case_activation.py": {"E04_2_case_activation_rule"},
+    "e_bl13_silent_customer_radar.py": {"E04_1_silent_customer_activation_rule"},
+}
+
+RULE_SPECS = {
+    "E02_1_news_source_whitelist": {
+        "id_field": "source_id",
+        "id_prefix": "NEWSRC",
+        "lookup": ["source_id"],
+        "required": ["source_id", "source_name", "source_url", "source_type", "domain", "trust_level", "language"],
+        "defaults": {"status": "active"},
+        "write_fields": [
+            "source_id", "source_name", "source_url", "source_type", "domain",
+            "trust_level", "language", "target_industries", "scan_frequency",
+            "last_scanned_at", "exclude_keywords", "crawl_method", "last_hit_count",
+            "owner", "keywords", "max_items_per_scan", "status", "remark",
+        ],
+    },
+    "E02_2_policy_scan_rule": {
+        "id_field": "policy_rule_id",
+        "id_prefix": "POLSCAN",
+        "lookup": ["policy_rule_id"],
+        "required": ["policy_rule_id", "region", "policy_type", "keywords", "policy_source_name", "policy_source_url"],
+        "defaults": {"status": "active"},
+        "write_fields": [
+            "policy_rule_id", "region", "city", "policy_type", "keywords",
+            "policy_source_name", "policy_source_url", "industry_scope",
+            "customer_match_fields", "customer_match_rule", "opportunity_threshold",
+            "priority_weight", "evidence_requirement", "recommended_activation_type",
+            "recommended_dline_skill_ids", "last_scanned_at", "version", "status", "remark",
+        ],
+    },
+    "E02_3_industry_ai_opportunity_rule": {
+        "id_field": "industry_rule_id",
+        "id_prefix": "INDRULE",
+        "lookup": ["industry_rule_id"],
+        "required": ["industry_rule_id", "industry", "opportunity_type", "signal_keywords", "value_point"],
+        "defaults": {"status": "active"},
+        "write_fields": [
+            "industry_rule_id", "industry", "sub_industry", "opportunity_type",
+            "signal_keywords", "exclude_keywords", "source_types", "customer_segment",
+            "pain_point_match", "value_point", "activation_angle",
+            "recommended_activation_type", "recommended_dline_skill_ids",
+            "priority_weight", "version", "owner", "status", "updated_at",
+        ],
+    },
+    "E04_1_silent_customer_activation_rule": {
+        "id_field": "silent_rule_id",
+        "id_prefix": "SILENT",
+        "lookup": ["silent_rule_id"],
+        "required": ["silent_rule_id", "silent_days_threshold", "activation_type", "recommended_message_angle"],
+        "defaults": {"status": "active"},
+        "write_fields": [
+            "silent_rule_id", "silent_days_threshold", "customer_stage",
+            "customer_rating", "last_interaction_type", "last_signal_type",
+            "activation_type", "recommended_message_angle", "required_evidence",
+            "recommended_dline_skill_ids", "max_retry_count", "cooldown_days",
+            "priority_weight", "version", "status", "remark",
+        ],
+    },
+    "E04_2_case_activation_rule": {
+        "id_field": "case_rule_id",
+        "id_prefix": "CASERULE",
+        "lookup": ["case_rule_id"],
+        "required": ["case_rule_id", "case_type", "case_match_condition", "activation_angle"],
+        "defaults": {"status": "active"},
+        "write_fields": [
+            "case_rule_id", "case_type", "customer_industry", "customer_segment",
+            "customer_stage", "customer_pain_point", "case_match_condition",
+            "source_case_pool_ref", "recommended_case_ids", "activation_angle",
+            "recommended_dline_skill_ids", "permission_level_required", "risk_boundary",
+            "priority_weight", "version", "status", "updated_at",
+        ],
+    },
+    "E04_3_policy_activation_rule": {
+        "id_field": "policy_activation_rule_id",
+        "id_prefix": "POLACT",
+        "lookup": ["policy_activation_rule_id"],
+        "required": ["policy_activation_rule_id", "policy_type", "region", "policy_match_condition", "activation_angle"],
+        "defaults": {"status": "active"},
+        "write_fields": [
+            "policy_activation_rule_id", "policy_type", "region", "industry",
+            "customer_segment", "customer_stage", "policy_match_condition",
+            "activation_angle", "recommended_dline_skill_ids", "cooldown_days",
+            "priority_weight", "version", "status", "remark",
+        ],
+    },
+}
+
 PROHIBITED_FIELDS = {"current_stage", "customer_rating", "rating_score", "p_win", "P(win)", "HI", "internal_reasoning", "model_hidden_state", "model_private_notes"}
 OK_STATUSES = {"pass", "needs_confirm", "rejected", "executed", "error"}
+URL_FIELD_NAMES = {
+    "source_a_snapshot_ref",
+    "source_b_record_ref",
+    "source_c_feedback_ref",
+    "source_d_weapon_ref",
+    "source_signal_ref",
+    "b_action_map_ref",
+    "source_url",
+    "policy_source_url",
+    "template_ref",
+    "output_schema_ref",
+}
+PLACEHOLDER_URL_HOSTS = {
+    "example.com",
+    "www.example.com",
+    "example.org",
+    "www.example.org",
+    "example.net",
+    "www.example.net",
+    "localhost",
+    "127.0.0.1",
+}
 
 
 def spec():
@@ -180,6 +343,8 @@ def table_id(config, table):
 
 def transform_value(config, table, field, value):
     target_type = config.get("field_types", {}).get(table, {}).get(field)
+    if target_type == "url" and isinstance(value, str):
+        return value.strip()
     if target_type == "text" and isinstance(value, (dict, list)):
         return json.dumps(value, ensure_ascii=False)
     if target_type == "number" and isinstance(value, str):
@@ -224,7 +389,63 @@ def prepare_data(data, current_spec):
     return merged
 
 
+def wants_rule_config(data):
+    mode = str(data.get("mode") or data.get("operation") or "").strip().lower()
+    return bool(data.get("rule_table")) or mode in RULE_MODE_VALUES
+
+
+def normalize_rule_table_name(value):
+    if value in (None, "", [], {}):
+        return ""
+    raw = str(value).strip()
+    return RULE_TABLE_ALIASES.get(raw.lower(), raw)
+
+
+def default_rule_table(data):
+    mode = str(data.get("mode") or data.get("operation") or "").strip().lower()
+    if SCRIPT_NAME == "e_bl10_policy_radar.py" and mode in {"activation_rule", "policy_activation_rule"}:
+        return "E04_3_policy_activation_rule"
+    return SCRIPT_RULE_DEFAULTS.get(SCRIPT_NAME, "")
+
+
+def build_rule_write(data, config):
+    allowed = SCRIPT_RULE_ALLOWED.get(SCRIPT_NAME, set())
+    requested_table = normalize_rule_table_name(data.get("rule_table")) or default_rule_table(data)
+    table = requested_table if requested_table in allowed else (default_rule_table(data) or requested_table)
+    rule_spec = RULE_SPECS.get(table, {})
+    if not rule_spec:
+        return {
+            "table": table or "unknown_rule_table",
+            "operation": "upsert",
+            "idempotency_key": f"{skill_id()}-unknown-rule-table",
+            "lookup": {},
+            "fields": {},
+        }, [f"{SCRIPT_NAME} does not support rule_table: {data.get('rule_table') or data.get('mode')}"], dict(data)
+    merged = dict(rule_spec.get("defaults") or {})
+    merged.update(data)
+    merged["rule_table"] = table
+    id_field = rule_spec["id_field"]
+    if not merged.get(id_field):
+        merged[id_field] = generated_id(rule_spec["id_prefix"], merged)
+    if "updated_at" in rule_spec["write_fields"]:
+        merged.setdefault("updated_at", now_iso())
+    fields = {field: merged.get(field) for field in rule_spec["write_fields"]}
+    write = {
+        "table": table,
+        "operation": "upsert",
+        "idempotency_key": f"{skill_id()}-{table}-{merged.get(id_field)}",
+        "lookup": {field: merged.get(field) for field in rule_spec.get("lookup", []) if merged.get(field) not in (None, "", [], {})},
+        "fields": normalize_fields(config, table, fields),
+    }
+    blocked = required_blocks(merged, rule_spec.get("required", []))
+    if requested_table and requested_table not in allowed:
+        blocked.append(f"{SCRIPT_NAME} cannot write rule_table: {requested_table}")
+    return write, blocked, merged
+
+
 def build_write(data, config):
+    if wants_rule_config(data):
+        return build_rule_write(data, config)
     current_spec = spec()
     merged = prepare_data(data, current_spec)
     table = current_spec["table"]
@@ -242,6 +463,57 @@ def build_write(data, config):
     return write, blocked, merged
 
 
+def validate_options(config, write):
+    table = write["table"]
+    options = config.get("select_options", {}).get(table, {})
+    blocked = []
+    for field, allowed in options.items():
+        if field not in write["fields"] or write["fields"][field] in (None, "", [], {}):
+            continue
+        values = as_list(write["fields"][field])
+        invalid = [value for value in values if value not in allowed]
+        if invalid:
+            blocked.append(f"{table}.{field} invalid option: {', '.join(map(str, invalid))}")
+    return blocked
+
+
+def extract_url(value):
+    if not isinstance(value, str):
+        return ""
+    text = value.strip()
+    if text.endswith(")") and "](" in text:
+        return text[text.rfind("](") + 2:-1].strip()
+    return text
+
+
+def url_fields_for(config, table):
+    typed = {
+        field
+        for field, target_type in config.get("field_types", {}).get(table, {}).items()
+        if target_type == "url"
+    }
+    known = set(table_fields(config, table)) & URL_FIELD_NAMES
+    return typed | known
+
+
+def validate_url_fields(config, write):
+    table = write["table"]
+    blocked = []
+    for field in sorted(url_fields_for(config, table) & set(write.get("fields", {}))):
+        value = write["fields"].get(field)
+        if value in (None, "", [], {}):
+            continue
+        for item in as_list(value):
+            url = extract_url(item)
+            parsed = urlparse(url)
+            host = parsed.netloc.lower().split("@")[-1].split(":")[0]
+            if parsed.scheme not in {"http", "https"} or not host:
+                blocked.append(f"{table}.{field} must be an http(s) URL")
+            elif host in PLACEHOLDER_URL_HOSTS or host.endswith(".example.com"):
+                blocked.append(f"{table}.{field} cannot use placeholder URL: {url}")
+    return blocked
+
+
 def validate_writes(config, writes):
     blocked = []
     normalized = []
@@ -250,7 +522,8 @@ def validate_writes(config, writes):
         fields = normalize_fields(config, table, write.get("fields", {}))
         write = dict(write)
         write["fields"] = fields
-        bad = sorted(set(fields) & PROHIBITED_FIELDS)
+        allowed_names = set(config.get("allowed_prohibited_field_names", {}).get(table, []))
+        bad = sorted((set(fields) & PROHIBITED_FIELDS) - allowed_names)
         if bad:
             blocked.append(f"{table} contains prohibited fields: {', '.join(bad)}")
         existing = table_fields(config, table)
@@ -260,6 +533,8 @@ def validate_writes(config, writes):
             missing = sorted(set(fields) - existing)
             if missing:
                 blocked.append(f"{table} missing fields: {', '.join(missing)}")
+        blocked.extend(validate_options(config, write))
+        blocked.extend(validate_url_fields(config, write))
         if not table_base_token(config, table):
             blocked.append(f"missing base token for {table}")
         if not table_id(config, table):
@@ -423,7 +698,12 @@ def main():
         if args.execute and status == "pass":
             refs["execution_results"] = execute_writes(config, writes)
             status = "executed" if all(item.get("returncode") == 0 for item in refs["execution_results"]) else "error"
-        emit(status, key, {"script": SCRIPT_NAME, **{k: validated.get(k) for k in ("e_task_id", "e_output_id", "customer_id", "template_id", "run_batch_id") if validated.get(k)}}, writes, blocked, commands, refs)
+        summary_keys = (
+            "e_task_id", "e_output_id", "customer_id", "template_id", "run_batch_id",
+            "rule_table", "source_id", "policy_rule_id", "industry_rule_id",
+            "silent_rule_id", "case_rule_id", "policy_activation_rule_id",
+        )
+        emit(status, key, {"script": SCRIPT_NAME, **{k: validated.get(k) for k in summary_keys if validated.get(k)}}, writes, blocked, commands, refs)
         sys.exit(0 if status in {"pass", "executed", "needs_confirm"} else 1)
     except Exception as exc:
         emit("error", blocked=[str(exc)])

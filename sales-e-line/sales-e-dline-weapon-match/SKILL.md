@@ -7,6 +7,7 @@ description: Use when E-line blacklight matching must recommend existing D-line 
 
 ## Purpose
 Use this skill for E-BL04: write D-line weapon recommendations to E01.2 from E03 mapping rules and current D-line weapon state.
+E03 mapping sources are read-only docs: `value_point_to_dline_skill_map.json` and `customer_stage_to_weapon_map.json`.
 
 ## Required Workflow
 1. Read `references/contract.md`.
