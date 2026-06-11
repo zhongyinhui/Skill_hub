@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-SK04 Alias Map"
+  short_description: "Customer alias normalization and mapping"
+  default_prompt: "Use $sales-a-alias-map to normalize customer aliases and map them to customer_id."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,815 @@
+{
+  "version": "2026-06-10-e-line-p0-rule-config",
+  "identity": "user",
+  "wiki_source": {
+    "root_url": "https://lcnpt5xjzbya.feishu.cn/wiki/AQRhwDUDuiirwQkQWzdcuAR3nYT",
+    "root_node_token": "AQRhwDUDuiirwQkQWzdcuAR3nYT",
+    "root_title": "E_黑灯主动狙击雷达"
+  },
+  "lark_cli_base": {
+    "lark_cli_ps1": "C:/Users/HUAWEI/AppData/Roaming/npm/lark-cli.ps1",
+    "as": "user",
+    "table_base_tokens": {
+      "E01_task_registry": "HM0tbI2ZAaMpPKsf5XtcQnhOn1c",
+      "E01_output_records": "J6w6bINKHalaWdsYYqQc6RRVn7d",
+      "E05_global_state": "AEwrbW3ZTazKUDsJOtJclxjtnkc",
+      "E05_sales_state": "NxiEbKZEQaGkrMsYWfKcga3ynlg",
+      "E05_weapon_state": "YWbvbs68sasmQwseMUPcoCBknZb",
+      "E05_segment_state": "K8YYbfr0BardmbsblAScNLDwnMd",
+      "E05_weekly_snapshot": "BX0hbL8uMajCVQs0xV2cTue7nkd",
+      "E05_major_change_log": "By9vbBaAda0TJ7sRlTHcjyzunHm",
+      "E06_template_index": "EajJb26dfa64vdslM7lc4rA5nmc",
+      "E02_1_news_source_whitelist": "XuBXbRgbKay1SFsk6VicNJA5n2d",
+      "E02_2_policy_scan_rule": "IkLrbP3pyahqofsAXwfc7Klunyd",
+      "E02_3_industry_ai_opportunity_rule": "N6zjbzWnjaryvSsX7uOcJLNYnoP",
+      "E04_1_silent_customer_activation_rule": "BoLQb3kgIa4excsHSuWcKsZqn2d",
+      "E04_2_case_activation_rule": "QAtBbxkZ7aiU3pspwMrc078wnkh",
+      "E04_3_policy_activation_rule": "KKo1bqmmWaf12OsnUsycuBsrnyh"
+    },
+    "table_ids": {
+      "E01_task_registry": "tblK9Jnsj60ki17H",
+      "E01_output_records": "tbl5wkOJEFVdDGL0",
+      "E05_global_state": "tblYJpznNLnrk7XG",
+      "E05_sales_state": "tbluIlTtM2ajQE1A",
+      "E05_weapon_state": "tblIneYDP9yjsVgM",
+      "E05_segment_state": "tblXtDMDq28fJSRr",
+      "E05_weekly_snapshot": "tblW4J7up4SEPkF0",
+      "E05_major_change_log": "tbl3v10Ui9bycQk5",
+      "E06_template_index": "tblmUBvqaYPT8Dhb",
+      "E02_1_news_source_whitelist": "tblafNl2HyGDINNY",
+      "E02_2_policy_scan_rule": "tblmc6qgJkla4Htw",
+      "E02_3_industry_ai_opportunity_rule": "tblOlmAFq5EV3C1q",
+      "E04_1_silent_customer_activation_rule": "tblliYUwqPNSn2jW",
+      "E04_2_case_activation_rule": "tbljLF02G4NI5ghv",
+      "E04_3_policy_activation_rule": "tblDtptd6Rxgfhdy"
+    }
+  },
+  "tables": {
+    "E01_task_registry": {
+      "table_ref": "tblK9Jnsj60ki17H",
+      "fields": [
+        "e_task_id",
+        "task_name",
+        "task_type",
+        "blacklight_type",
+        "target_customer_scope",
+        "input_sources",
+        "rule_table_refs",
+        "output_template_id",
+        "write_to_target",
+        "output_type",
+        "scan_frequency",
+        "priority",
+        "status",
+        "last_run_at",
+        "next_run_at",
+        "last_run_status",
+        "error_summary",
+        "owner",
+        "version",
+        "remark"
+      ]
+    },
+    "E01_output_records": {
+      "table_ref": "tbl5wkOJEFVdDGL0",
+      "fields": [
+        "e_output_id",
+        "e_task_id",
+        "run_batch_id",
+        "run_date",
+        "created_at",
+        "updated_at",
+        "customer_id",
+        "customer_name_snapshot",
+        "target_sales_id",
+        "target_sales_name",
+        "source_a_snapshot_ref",
+        "source_b_record_ref",
+        "source_c_feedback_ref",
+        "source_d_weapon_ref",
+        "source_signal_ref",
+        "source_signal_type",
+        "opportunity_type",
+        "recommendation_type",
+        "recommended_action",
+        "recommendation_reason",
+        "confidence_score",
+        "priority_score",
+        "recommended_dline_skill_ids",
+        "output_template_id",
+        "evidence_refs",
+        "b_action_map_id",
+        "b_action_map_ref",
+        "write_to_b_status",
+        "sync_status",
+        "error_message",
+        "adoption_feedback_status",
+        "actual_action_taken",
+        "customer_response_summary",
+        "c_effect_ref",
+        "final_effect_status",
+        "non_adoption_reason"
+      ]
+    },
+    "E05_global_state": {
+      "table_ref": "tblYJpznNLnrk7XG",
+      "fields": [
+        "global_factor_id",
+        "factor_key",
+        "factor_type",
+        "current_weight",
+        "previous_weight",
+        "weight_delta",
+        "positive_feedback_count",
+        "negative_feedback_count",
+        "adoption_rate_7d",
+        "effectiveness_rate_7d",
+        "confidence_score",
+        "update_source",
+        "last_update_reason",
+        "status",
+        "updated_at"
+      ]
+    },
+    "E05_sales_state": {
+      "table_ref": "tbluIlTtM2ajQE1A",
+      "fields": [
+        "sales_factor_id",
+        "sales_id",
+        "sales_name",
+        "factor_type",
+        "current_weight",
+        "previous_weight",
+        "adoption_rate_30d",
+        "effectiveness_rate_30d",
+        "top_rejection_reason",
+        "do_not_recommend_flag",
+        "confidence_score",
+        "update_source",
+        "updated_at",
+        "remark"
+      ]
+    },
+    "E05_weapon_state": {
+      "table_ref": "tblIneYDP9yjsVgM",
+      "fields": [
+        "weapon_factor_id",
+        "dline_skill_id",
+        "weapon_name",
+        "customer_stage",
+        "customer_segment",
+        "current_weight",
+        "previous_weight",
+        "hit_rate_30d",
+        "use_rate_30d",
+        "recent_positive_feedback",
+        "recent_negative_feedback",
+        "risk_penalty",
+        "recommendation_status",
+        "d06_version_status",
+        "c02_metric_ref",
+        "updated_at"
+      ]
+    },
+    "E05_segment_state": {
+      "table_ref": "tblXtDMDq28fJSRr",
+      "fields": [
+        "segment_factor_id",
+        "customer_segment",
+        "customer_stage",
+        "customer_rating",
+        "opportunity_type",
+        "current_weight",
+        "previous_weight",
+        "response_rate_30d",
+        "effectiveness_rate_30d",
+        "confidence_score",
+        "status",
+        "updated_at"
+      ]
+    },
+    "E05_weekly_snapshot": {
+      "table_ref": "tblW4J7up4SEPkF0",
+      "fields": [
+        "snapshot_id",
+        "week_start",
+        "week_end",
+        "snapshot_scope",
+        "source_state_table",
+        "metrics_summary",
+        "major_changes",
+        "snapshot_json",
+        "created_by",
+        "created_at",
+        "remark"
+      ]
+    },
+    "E05_major_change_log": {
+      "table_ref": "tbl3v10Ui9bycQk5",
+      "fields": [
+        "change_id",
+        "affected_state_table",
+        "affected_factor_id",
+        "change_type",
+        "old_value",
+        "new_value",
+        "change_reason",
+        "evidence_refs",
+        "impact_scope",
+        "review_required",
+        "review_status",
+        "reviewer",
+        "effective_at",
+        "created_at",
+        "remark"
+      ]
+    },
+    "E06_template_index": {
+      "table_ref": "tblmUBvqaYPT8Dhb",
+      "fields": [
+        "template_id",
+        "template_name",
+        "output_type",
+        "target_receiver",
+        "applicable_task_type",
+        "applicable_customer_stage",
+        "template_ref",
+        "output_schema_ref",
+        "required_fields",
+        "optional_fields",
+        "tone_style",
+        "version",
+        "status",
+        "reviewer",
+        "updated_at",
+        "remark"
+      ]
+    },
+    "E02_1_news_source_whitelist": {
+      "table_ref": "tblafNl2HyGDINNY",
+      "fields": [
+        "owner",
+        "domain",
+        "max_items_per_scan",
+        "language",
+        "source_type",
+        "source_name",
+        "source_id",
+        "keywords",
+        "crawl_method",
+        "scan_frequency",
+        "last_scanned_at",
+        "remark",
+        "source_url",
+        "last_hit_count",
+        "target_industries",
+        "exclude_keywords",
+        "trust_level",
+        "status"
+      ]
+    },
+    "E02_2_policy_scan_rule": {
+      "table_ref": "tblmc6qgJkla4Htw",
+      "fields": [
+        "region",
+        "policy_type",
+        "keywords",
+        "last_scanned_at",
+        "policy_rule_id",
+        "opportunity_threshold",
+        "priority_weight",
+        "status",
+        "industry_scope",
+        "evidence_requirement",
+        "city",
+        "policy_source_name",
+        "recommended_dline_skill_ids",
+        "policy_source_url",
+        "recommended_activation_type",
+        "version",
+        "customer_match_fields",
+        "customer_match_rule",
+        "remark"
+      ]
+    },
+    "E02_3_industry_ai_opportunity_rule": {
+      "table_ref": "tblOlmAFq5EV3C1q",
+      "fields": [
+        "recommended_dline_skill_ids",
+        "activation_angle",
+        "value_point",
+        "updated_at",
+        "source_types",
+        "signal_keywords",
+        "industry",
+        "pain_point_match",
+        "priority_weight",
+        "customer_segment",
+        "version",
+        "owner",
+        "status",
+        "industry_rule_id",
+        "exclude_keywords",
+        "opportunity_type",
+        "recommended_activation_type",
+        "sub_industry"
+      ]
+    },
+    "E04_1_silent_customer_activation_rule": {
+      "table_ref": "tblliYUwqPNSn2jW",
+      "fields": [
+        "activation_type",
+        "version",
+        "customer_stage",
+        "status",
+        "max_retry_count",
+        "customer_rating",
+        "last_interaction_type",
+        "recommended_dline_skill_ids",
+        "silent_rule_id",
+        "silent_days_threshold",
+        "last_signal_type",
+        "cooldown_days",
+        "remark",
+        "recommended_message_angle",
+        "priority_weight",
+        "required_evidence"
+      ]
+    },
+    "E04_2_case_activation_rule": {
+      "table_ref": "tbljLF02G4NI5ghv",
+      "fields": [
+        "source_case_pool_ref",
+        "updated_at",
+        "status",
+        "case_rule_id",
+        "case_match_condition",
+        "risk_boundary",
+        "priority_weight",
+        "customer_industry",
+        "recommended_case_ids",
+        "recommended_dline_skill_ids",
+        "customer_segment",
+        "customer_stage",
+        "activation_angle",
+        "case_type",
+        "customer_pain_point",
+        "permission_level_required"
+      ]
+    },
+    "E04_3_policy_activation_rule": {
+      "table_ref": "tblDtptd6Rxgfhdy",
+      "fields": [
+        "remark",
+        "policy_activation_rule_id",
+        "industry",
+        "cooldown_days",
+        "priority_weight",
+        "activation_angle",
+        "customer_segment",
+        "customer_stage",
+        "status",
+        "region",
+        "policy_match_condition",
+        "recommended_dline_skill_ids",
+        "version",
+        "policy_type"
+      ]
+    }
+  },
+  "field_aliases": {
+    "E01_output_records": {
+      "dline_skill_ids": "recommended_dline_skill_ids",
+      "a_snapshot_ref": "source_a_snapshot_ref",
+      "b_record_ref": "source_b_record_ref",
+      "c_feedback_ref": "source_c_feedback_ref",
+      "d_weapon_ref": "source_d_weapon_ref",
+      "action": "recommended_action",
+      "reason": "recommendation_reason"
+    }
+  },
+  "drop_fields": {
+    "E01_task_registry": [],
+    "E01_output_records": [],
+    "E05_global_state": [],
+    "E05_sales_state": [
+      "customer_rating"
+    ],
+    "E05_weapon_state": [
+      "customer_rating"
+    ],
+    "E05_segment_state": [],
+    "E05_weekly_snapshot": [],
+    "E05_major_change_log": [],
+    "E02_1_news_source_whitelist": [],
+    "E02_2_policy_scan_rule": [],
+    "E02_3_industry_ai_opportunity_rule": [],
+    "E04_1_silent_customer_activation_rule": [],
+    "E04_2_case_activation_rule": [],
+    "E04_3_policy_activation_rule": []
+  },
+  "field_types": {
+    "E01_task_registry": {
+      "target_customer_scope": "multi_select",
+      "output_type": "multi_select"
+    },
+    "E01_output_records": {
+      "confidence_score": "number",
+      "priority_score": "number",
+      "source_a_snapshot_ref": "url",
+      "source_b_record_ref": "url",
+      "source_c_feedback_ref": "url",
+      "source_d_weapon_ref": "url",
+      "source_signal_ref": "url",
+      "recommended_dline_skill_ids": "text",
+      "evidence_refs": "text",
+      "b_action_map_ref": "url"
+    },
+    "E05_global_state": {
+      "current_weight": "number",
+      "previous_weight": "number",
+      "weight_delta": "number",
+      "confidence_score": "number"
+    },
+    "E05_sales_state": {
+      "current_weight": "number",
+      "previous_weight": "number",
+      "confidence_score": "number"
+    },
+    "E05_weapon_state": {
+      "current_weight": "number",
+      "previous_weight": "number",
+      "risk_penalty": "number"
+    },
+    "E05_segment_state": {
+      "current_weight": "number",
+      "previous_weight": "number",
+      "confidence_score": "number"
+    },
+    "E05_weekly_snapshot": {
+      "metrics_summary": "text",
+      "major_changes": "text",
+      "snapshot_json": "text"
+    },
+    "E05_major_change_log": {
+      "old_value": "text",
+      "new_value": "text",
+      "evidence_refs": "text"
+    },
+    "E06_template_index": {
+      "template_ref": "url",
+      "output_schema_ref": "url",
+      "required_fields": "text",
+      "optional_fields": "text"
+    },
+    "E02_1_news_source_whitelist": {
+      "source_url": "url",
+      "max_items_per_scan": "number",
+      "last_hit_count": "number"
+    },
+    "E02_2_policy_scan_rule": {
+      "policy_source_url": "url",
+      "customer_match_fields": "multi_select",
+      "customer_match_rule": "text",
+      "opportunity_threshold": "number",
+      "priority_weight": "number",
+      "recommended_dline_skill_ids": "text"
+    },
+    "E02_3_industry_ai_opportunity_rule": {
+      "source_types": "multi_select",
+      "customer_segment": "multi_select",
+      "priority_weight": "number",
+      "recommended_dline_skill_ids": "text"
+    },
+    "E04_1_silent_customer_activation_rule": {
+      "customer_stage": "multi_select",
+      "customer_rating": "multi_select",
+      "last_signal_type": "multi_select",
+      "silent_days_threshold": "number",
+      "max_retry_count": "number",
+      "cooldown_days": "number",
+      "priority_weight": "number",
+      "recommended_dline_skill_ids": "text"
+    },
+    "E04_2_case_activation_rule": {
+      "customer_segment": "multi_select",
+      "customer_stage": "multi_select",
+      "case_match_condition": "text",
+      "priority_weight": "number",
+      "recommended_case_ids": "text",
+      "recommended_dline_skill_ids": "text"
+    },
+    "E04_3_policy_activation_rule": {
+      "customer_segment": "multi_select",
+      "customer_stage": "multi_select",
+      "policy_match_condition": "text",
+      "cooldown_days": "number",
+      "priority_weight": "number",
+      "recommended_dline_skill_ids": "text"
+    }
+  },
+  "select_options": {
+    "E01_task_registry": {
+      "task_type": [
+        "AI新闻扫描",
+        "地区政策扫描",
+        "行业机会扫描",
+        "沉默客户激活",
+        "案例激活",
+        "政策激活",
+        "D线武器匹配",
+        "行动地图生成",
+        "影响因子更新"
+      ],
+      "blacklight_type": [
+        "日更黑灯",
+        "周更黑灯",
+        "月更黑灯",
+        "事件触发黑灯"
+      ],
+      "target_customer_scope": [
+        "全客户",
+        "高意向客户",
+        "沉默客户",
+        "报价前客户",
+        "指定销售客户",
+        "指定行业客户"
+      ],
+      "write_to_target": [
+        "B线行动地图",
+        "E线输出记录",
+        "C线候选",
+        "D线候选",
+        "总经办候选"
+      ],
+      "output_type": [
+        "新闻机会",
+        "政策机会",
+        "行业机会",
+        "激活建议",
+        "D线武器推荐",
+        "次日行动地图",
+        "上浮信号"
+      ]
+    },
+    "E02_1_news_source_whitelist": {
+      "language": [
+        "中文",
+        "英文",
+        "其他"
+      ],
+      "source_type": [
+        "AI新闻",
+        "企业AI化",
+        "行业案例",
+        "投融资",
+        "政策解读",
+        "竞品动态"
+      ],
+      "crawl_method": [
+        "RSS",
+        "网页",
+        "API",
+        "手动录入"
+      ],
+      "scan_frequency": [
+        "每日",
+        "每周",
+        "手动"
+      ],
+      "trust_level": [
+        "高",
+        "中",
+        "低"
+      ],
+      "status": [
+        "active",
+        "review",
+        "disabled"
+      ]
+    },
+    "E02_2_policy_scan_rule": {
+      "policy_type": [
+        "补贴",
+        "招标",
+        "产业扶持",
+        "AI专项",
+        "数字化转型",
+        "人才政策",
+        "政府需求",
+        "其他"
+      ],
+      "status": [
+        "active",
+        "review",
+        "frozen",
+        "disabled"
+      ],
+      "recommended_activation_type": [
+        "政策激活",
+        "招商激活",
+        "ROI激活",
+        "方案激活"
+      ],
+      "customer_match_fields": [
+        "地区",
+        "行业",
+        "规模",
+        "客户阶段",
+        "客户评级"
+      ]
+    },
+    "E02_3_industry_ai_opportunity_rule": {
+      "source_types": [
+        "新闻",
+        "政策",
+        "案例",
+        "竞品",
+        "行业报告"
+      ],
+      "customer_segment": [
+        "老板型",
+        "销售团队型",
+        "招商型",
+        "教培型",
+        "渠道型",
+        "其他"
+      ],
+      "status": [
+        "active",
+        "review",
+        "frozen",
+        "disabled"
+      ],
+      "opportunity_type": [
+        "AI销售",
+        "AI管理",
+        "AI流量",
+        "招商",
+        "产品AI化",
+        "组织AI化",
+        "其他"
+      ],
+      "recommended_activation_type": [
+        "新闻激活",
+        "案例激活",
+        "政策激活",
+        "D线武器激活"
+      ]
+    },
+    "E04_1_silent_customer_activation_rule": {
+      "activation_type": [
+        "案例激活",
+        "政策激活",
+        "ROI激活",
+        "新闻激活",
+        "销售信激活",
+        "主管介入"
+      ],
+      "customer_stage": [
+        "建联",
+        "挖需",
+        "方案",
+        "报价前",
+        "成交前",
+        "沉默"
+      ],
+      "status": [
+        "active",
+        "disabled",
+        "frozen"
+      ],
+      "customer_rating": [
+        "S",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "last_interaction_type": [
+        "微信",
+        "电话",
+        "面谈",
+        "报价",
+        "方案",
+        "D线产物",
+        "未知"
+      ],
+      "last_signal_type": [
+        "问价",
+        "要方案",
+        "要案例",
+        "提异议",
+        "已报价",
+        "已看材料"
+      ]
+    },
+    "E04_2_case_activation_rule": {
+      "status": [
+        "active",
+        "review",
+        "frozen",
+        "disabled"
+      ],
+      "customer_segment": [
+        "老板型",
+        "招商型",
+        "教培型",
+        "渠道型",
+        "销售团队型"
+      ],
+      "customer_stage": [
+        "挖需",
+        "价值准入",
+        "方案",
+        "报价前",
+        "沉默"
+      ],
+      "case_type": [
+        "成交案例",
+        "交付案例",
+        "招商案例",
+        "政策案例",
+        "行业案例"
+      ],
+      "permission_level_required": [
+        "内部可用",
+        "可对外展示",
+        "需审批"
+      ]
+    },
+    "E04_3_policy_activation_rule": {
+      "customer_segment": [
+        "招商型",
+        "老板型",
+        "政府资源型",
+        "渠道型",
+        "中小企业"
+      ],
+      "customer_stage": [
+        "挖需",
+        "价值准入",
+        "方案",
+        "报价前",
+        "沉默"
+      ],
+      "status": [
+        "active",
+        "review",
+        "frozen",
+        "disabled"
+      ],
+      "policy_type": [
+        "补贴",
+        "招标",
+        "产业扶持",
+        "AI专项",
+        "数字化转型",
+        "政府需求"
+      ]
+    }
+  },
+  "boundaries": {
+    "e_line_role": "nightly_blacklight_radar",
+    "may_read": [
+      "A-line customer snapshots",
+      "B-line action feedback",
+      "C-line effect attribution",
+      "D-line weapon state",
+      "E02 external scan rule tables",
+      "E03 D-line weapon mapping JSON docs",
+      "E04 customer activation rule tables"
+    ],
+    "may_write": [
+      "E01 task registry",
+      "E01.2 output records",
+      "E05 active states",
+      "E05 weekly snapshots",
+      "E05 major change logs",
+      "E02/E04 rule config tables in explicit rule_config mode"
+    ],
+    "must_not_write": [
+      "A-line formal customer facts",
+      "D-line generated weapon artifacts",
+      "new Feishu fields",
+      "new select options"
+    ]
+  },
+  "allowed_prohibited_field_names": {
+    "E04_1_silent_customer_activation_rule": [
+      "customer_rating"
+    ]
+  },
+  "reference_docs": {
+    "E03_value_point_to_dline_skill_map": {
+      "wiki_node_token": "QxOlwYrNDiXO2BkIapGcFINBnZg",
+      "obj_token": "RbkXdnqmloIbqbxnABXc2H8Enwg",
+      "title": "value_point_to_dline_skill_map.json"
+    },
+    "E03_customer_stage_to_weapon_map": {
+      "wiki_node_token": "XJDqwJPbQiXCb0kETMjcCILInIh",
+      "obj_token": "NYqyd9MjGoexgGx3narc488An5b",
+      "title": "customer_stage_to_weapon_map.json"
+    }
+  }
+}

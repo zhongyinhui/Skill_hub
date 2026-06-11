@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-SK10 Snapshot Read"
+  short_description: "Read-only customer snapshot for B/C/E lines"
+  default_prompt: "Use $sales-a-snapshot-read to read the current A-line customer snapshot for B, C, or E line work."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "A-SK03 Self Customer Dedupe"
+  short_description: "No-source customer dedupe and record drafting"
+  default_prompt: "Use $sales-a-self-customer-dedupe to dedupe and draft a self-developed customer record."
+
+policy:
+  allow_implicit_invocation: true

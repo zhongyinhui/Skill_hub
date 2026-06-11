@@ -1,0 +1,7 @@
+interface:
+  display_name: "E-BL12 Case Activation"
+  short_description: "Write case-based activation opportunities"
+  default_prompt: "Use $sales-e-case-activation to record a case-based E-line activation opportunity."
+
+policy:
+  allow_implicit_invocation: true
