@@ -1,0 +1,4 @@
+interface:
+  display_name: "C-SK02 Daily Fact Sync"
+  short_description: "Sync B-line daily facts into per-sales C01 records."
+  default_prompt: "Use $c-line-c-sk02-daily-fact to implement or review C-SK02."

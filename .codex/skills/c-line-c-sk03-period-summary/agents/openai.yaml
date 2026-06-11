@@ -1,0 +1,4 @@
+interface:
+  display_name: "C-SK03 Period Summary"
+  short_description: "Generate rolling and monthly C-line sales summaries."
+  default_prompt: "Use $c-line-c-sk03-period-summary to implement or review C-SK03."

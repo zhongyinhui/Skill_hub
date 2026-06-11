@@ -1,0 +1,4 @@
+interface:
+  display_name: "C-SK04 Customer Progress Risk"
+  short_description: "Analyze customer progress, stagnation, and manager-risk candidates."
+  default_prompt: "Use $c-line-c-sk04-customer-progress to implement or review C-SK04."

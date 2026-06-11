@@ -1,0 +1,4 @@
+interface:
+  display_name: "C Line P0 Governance"
+  short_description: "Execute C-line P0 governance workflows safely"
+  default_prompt: "Use $c-line-p0-governance to implement or review the C-line P0 governance workflow."

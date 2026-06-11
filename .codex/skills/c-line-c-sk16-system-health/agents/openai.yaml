@@ -1,0 +1,4 @@
+interface:
+  display_name: "C-SK16 System Health"
+  short_description: "Log C-line field, sync, permission, and write-conflict health issues."
+  default_prompt: "Use $c-line-c-sk16-system-health to implement or review C-SK16."
