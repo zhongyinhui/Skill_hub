@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL01 Task Register"
+  short_description: "Register or validate E-line blacklight tasks"
+  default_prompt: "Use $sales-e-blacklight-task-register to validate or upsert an E-line blacklight task."
+
+policy:
+  allow_implicit_invocation: true
+

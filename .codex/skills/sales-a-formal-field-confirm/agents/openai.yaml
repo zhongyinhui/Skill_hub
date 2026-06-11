@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "A-SK07 Formal Field Confirm"
+  short_description: "Human-confirmed customer profile writes"
+  default_prompt: "Use $sales-a-formal-field-confirm to write confirmed A-line formal customer fields."
+
+policy:
+  allow_implicit_invocation: true
+

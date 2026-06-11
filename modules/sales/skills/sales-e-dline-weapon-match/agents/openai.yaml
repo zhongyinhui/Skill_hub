@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL04 D-Line Weapon Match"
+  short_description: "Recommend existing D-line weapons"
+  default_prompt: "Use $sales-e-dline-weapon-match to record D-line weapon recommendations from E-line matching."
+
+policy:
+  allow_implicit_invocation: true
+

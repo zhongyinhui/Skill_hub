@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL05 Action Map"
+  short_description: "Prepare next-day B-line action-map rows"
+  default_prompt: "Use $sales-e-action-map-generate to create E-line next-day action map recommendations."
+
+policy:
+  allow_implicit_invocation: true
+

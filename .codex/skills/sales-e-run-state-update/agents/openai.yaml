@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL16 Run State"
+  short_description: "Update E-line task run state"
+  default_prompt: "Use $sales-e-run-state-update to update E-line blacklight task run status."
+
+policy:
+  allow_implicit_invocation: true
+

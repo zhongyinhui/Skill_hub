@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "A-SK06 Ledger Append"
+  short_description: "Append validated A-line customer ledger blocks"
+  default_prompt: "Use $sales-a-ledger-append to append a validated fact block to the A-line customer ledger."
+
+policy:
+  allow_implicit_invocation: true
+

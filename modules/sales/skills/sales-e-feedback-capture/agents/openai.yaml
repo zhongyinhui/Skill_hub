@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL06 Feedback Capture"
+  short_description: "Capture B/C/D feedback into E01.2"
+  default_prompt: "Use $sales-e-feedback-capture to update an E-line output row with adoption or effect feedback."
+
+policy:
+  allow_implicit_invocation: true
+

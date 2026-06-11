@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL11 Industry Radar"
+  short_description: "Write industry opportunity records"
+  default_prompt: "Use $sales-e-industry-radar to record an industry opportunity discovered by E-line."
+
+policy:
+  allow_implicit_invocation: true
+
