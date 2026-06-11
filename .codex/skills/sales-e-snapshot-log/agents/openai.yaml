@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL08 Snapshot Log"
+  short_description: "Write E05 snapshots or major-change logs"
+  default_prompt: "Use $sales-e-snapshot-log to preserve E-line influence-factor history."
+
+policy:
+  allow_implicit_invocation: true
+

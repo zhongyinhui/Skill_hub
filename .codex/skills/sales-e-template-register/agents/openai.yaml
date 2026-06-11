@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL14 Template Register"
+  short_description: "Register E-line output templates"
+  default_prompt: "Use $sales-e-template-register to register or update an E-line output template."
+
+policy:
+  allow_implicit_invocation: true
+

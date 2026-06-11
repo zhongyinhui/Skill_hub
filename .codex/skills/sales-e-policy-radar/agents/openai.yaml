@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL10 Policy Radar"
+  short_description: "Write policy-triggered E-line opportunities"
+  default_prompt: "Use $sales-e-policy-radar to record a policy-triggered E-line opportunity."
+
+policy:
+  allow_implicit_invocation: true
+

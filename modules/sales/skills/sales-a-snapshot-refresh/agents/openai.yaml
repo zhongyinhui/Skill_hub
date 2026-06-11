@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "A-SK09 Snapshot Refresh"
+  short_description: "Refresh A-line customer latest_snapshot fields"
+  default_prompt: "Use $sales-a-snapshot-refresh to refresh an A-line customer latest_snapshot after validated ledger updates."
+
+policy:
+  allow_implicit_invocation: true
+

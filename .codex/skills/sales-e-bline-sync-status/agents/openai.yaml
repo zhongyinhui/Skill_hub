@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL15 B-Line Sync"
+  short_description: "Update E output B-line sync status"
+  default_prompt: "Use $sales-e-bline-sync-status to write B-line sync refs or status back to E-line."
+
+policy:
+  allow_implicit_invocation: true
+

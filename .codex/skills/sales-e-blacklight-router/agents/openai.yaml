@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL00 Blacklight Router"
+  short_description: "Route E-line requests to the right skill"
+  default_prompt: "Use $sales-e-blacklight-router to choose the correct downstream E-line skill without writing Feishu."
+
+policy:
+  allow_implicit_invocation: true
+

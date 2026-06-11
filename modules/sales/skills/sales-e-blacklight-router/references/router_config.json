@@ -1,0 +1,104 @@
+﻿{
+  "version": "2026-06-10-e-line-router-p0",
+  "skill_id": "E-BL00",
+  "no_writes": true,
+  "downstream_skills": {
+    "sales-e-blacklight-task-register": {
+      "skill_id": "E-BL01",
+      "script": "sales-e-blacklight-task-register/scripts/e_bl01_task_registry.py",
+      "writes": ["E01_task_registry"],
+      "purpose": "register or validate E-line blacklight tasks"
+    },
+    "sales-e-opportunity-scan": {
+      "skill_id": "E-BL02",
+      "script": "sales-e-opportunity-scan/scripts/e_bl02_opportunity_scan.py",
+      "writes": ["E01_output_records"],
+      "purpose": "write generic external opportunity signals"
+    },
+    "sales-e-customer-activation": {
+      "skill_id": "E-BL03",
+      "script": "sales-e-customer-activation/scripts/e_bl03_customer_activation.py",
+      "writes": ["E01_output_records"],
+      "purpose": "write customer activation recommendations"
+    },
+    "sales-e-dline-weapon-match": {
+      "skill_id": "E-BL04",
+      "script": "sales-e-dline-weapon-match/scripts/e_bl04_dline_weapon_match.py",
+      "writes": ["E01_output_records"],
+      "purpose": "write D-line weapon recommendations"
+    },
+    "sales-e-action-map-generate": {
+      "skill_id": "E-BL05",
+      "script": "sales-e-action-map-generate/scripts/e_bl05_action_map_generate.py",
+      "writes": ["E01_output_records"],
+      "purpose": "prepare next-day B-line action map recommendations"
+    },
+    "sales-e-feedback-capture": {
+      "skill_id": "E-BL06",
+      "script": "sales-e-feedback-capture/scripts/e_bl06_feedback_capture.py",
+      "writes": ["E01_output_records"],
+      "purpose": "capture B/C/D feedback on E-line recommendations"
+    },
+    "sales-e-influence-adjust": {
+      "skill_id": "E-BL07",
+      "script": "sales-e-influence-adjust/scripts/e_bl07_influence_adjust.py",
+      "writes": ["E05_global_state", "E05_sales_state", "E05_weapon_state", "E05_segment_state"],
+      "purpose": "update E05 active influence factors"
+    },
+    "sales-e-snapshot-log": {
+      "skill_id": "E-BL08",
+      "script": "sales-e-snapshot-log/scripts/e_bl08_snapshot_and_change_log.py",
+      "writes": ["E05_weekly_snapshot", "E05_major_change_log"],
+      "purpose": "preserve E05 snapshots or major change logs"
+    },
+    "sales-e-news-radar": {
+      "skill_id": "E-BL09",
+      "script": "sales-e-news-radar/scripts/e_bl09_news_radar.py",
+      "writes": ["E01_output_records", "E02_1_news_source_whitelist"],
+      "purpose": "route news signals or maintain E02.1 source whitelist"
+    },
+    "sales-e-policy-radar": {
+      "skill_id": "E-BL10",
+      "script": "sales-e-policy-radar/scripts/e_bl10_policy_radar.py",
+      "writes": ["E01_output_records", "E02_2_policy_scan_rule", "E04_3_policy_activation_rule"],
+      "purpose": "route policy signals or maintain policy scan/activation rules"
+    },
+    "sales-e-industry-radar": {
+      "skill_id": "E-BL11",
+      "script": "sales-e-industry-radar/scripts/e_bl11_industry_radar.py",
+      "writes": ["E01_output_records", "E02_3_industry_ai_opportunity_rule"],
+      "purpose": "route industry signals or maintain E02.3 industry rules"
+    },
+    "sales-e-case-activation": {
+      "skill_id": "E-BL12",
+      "script": "sales-e-case-activation/scripts/e_bl12_case_activation.py",
+      "writes": ["E01_output_records", "E04_2_case_activation_rule"],
+      "purpose": "route case activation signals or maintain E04.2 rules"
+    },
+    "sales-e-silent-customer-radar": {
+      "skill_id": "E-BL13",
+      "script": "sales-e-silent-customer-radar/scripts/e_bl13_silent_customer_radar.py",
+      "writes": ["E01_output_records", "E04_1_silent_customer_activation_rule"],
+      "purpose": "route silent customer opportunities or maintain E04.1 rules"
+    },
+    "sales-e-template-register": {
+      "skill_id": "E-BL14",
+      "script": "sales-e-template-register/scripts/e_bl14_template_register.py",
+      "writes": ["E06_template_index"],
+      "purpose": "register or validate E06 output templates"
+    },
+    "sales-e-bline-sync-status": {
+      "skill_id": "E-BL15",
+      "script": "sales-e-bline-sync-status/scripts/e_bl15_bline_sync_status.py",
+      "writes": ["E01_output_records"],
+      "purpose": "update B-line sync status and references"
+    },
+    "sales-e-run-state-update": {
+      "skill_id": "E-BL16",
+      "script": "sales-e-run-state-update/scripts/e_bl16_run_state_update.py",
+      "writes": ["E01_task_registry"],
+      "purpose": "update E-line task run status"
+    }
+  }
+}
+

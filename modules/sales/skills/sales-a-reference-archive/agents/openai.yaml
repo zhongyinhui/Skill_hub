@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "A-SK08 Reference Archive"
+  short_description: "Archive evidence, artifact, and handoff refs"
+  default_prompt: "Use $sales-a-reference-archive to archive evidence, artifact, and handoff references for A-line facts."
+
+policy:
+  allow_implicit_invocation: true
+

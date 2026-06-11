@@ -1,0 +1,8 @@
+﻿interface:
+  display_name: "E-BL02 Opportunity Scan"
+  short_description: "Write scanned opportunity signals to E01.2"
+  default_prompt: "Use $sales-e-opportunity-scan to turn a blacklight signal into an E-line opportunity record."
+
+policy:
+  allow_implicit_invocation: true
+
